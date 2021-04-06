@@ -58,7 +58,8 @@ public class Gui_Init {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setBackground(Color.WHITE);
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("logo_ISCTE-IUL.jpg"));
+		String basePath = new File("C:\\Users\\35191\\Documents\\GitHub\\ProjetoES\\ES-2Sem-2021-Grupo-8\\logo_ISCTE-IUL.jpg").getAbsolutePath();
+		lblNewLabel.setIcon(new ImageIcon(basePath));
 
 		JLabel lblNewLabel_1 = new JLabel("Projeto ES ");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 40));
