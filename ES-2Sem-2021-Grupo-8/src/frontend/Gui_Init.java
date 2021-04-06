@@ -77,11 +77,12 @@ public class Gui_Init {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				JFileChooser fc = new JFileChooser();
+				fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 				int returnVal = fc.showOpenDialog(fc);
 				if (returnVal == JFileChooser.APPROVE_OPTION) {
 					File file = fc.getSelectedFile();
-					System.out.print("Opening: " + file.getName() + ".");
-					txtpnAsdsa.setText(file.getName());
+					System.out.print("Opening: " + file.getAbsolutePath() + ".");
+					txtpnAsdsa.setText(file.getAbsolutePath());
 				}
 			}
 		});
