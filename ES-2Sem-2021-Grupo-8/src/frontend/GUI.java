@@ -1,4 +1,4 @@
-package fronted;
+package frontend;
 
 public class GUI {
 

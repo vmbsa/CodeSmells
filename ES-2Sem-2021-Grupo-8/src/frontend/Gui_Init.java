@@ -1,4 +1,4 @@
-package FrontEnd;
+package frontend;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -93,8 +93,8 @@ public class Gui_Init {
 		btnNewButton_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Gui_Metricas gui_metrics = new Gui_Metricas();
-				gui_metrics.setVisible(true);
+				//Gui_Metricas gui_metrics = new Gui_Metricas();
+				//gui_metrics.setVisible(true);
 			}
 		});
 		btnNewButton_1.setBackground(SystemColor.textHighlight);
@@ -105,8 +105,8 @@ public class Gui_Init {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Gui_Regras gui_regras = new Gui_Regras();
-				gui_regras.setVisible(true);
+				//Gui_Regras gui_regras = new Gui_Regras();
+				//gui_regras.setVisible(true);
 			}
 		});
 		btnNewButton_1_1.setBorder(null);
