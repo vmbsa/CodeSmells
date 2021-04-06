@@ -16,7 +16,6 @@ public class JavaPackage {
 		this.file = file;
 		getClasses();
 	}
-
 	
 	
 	public String getName() {
@@ -33,5 +32,6 @@ public class JavaPackage {
             }
 		}
 	}
+	
 
 }

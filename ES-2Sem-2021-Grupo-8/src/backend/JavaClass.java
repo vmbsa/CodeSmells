@@ -36,7 +36,6 @@ public class JavaClass extends VoidVisitorAdapter<Void>{
 	@Override
 	public void visit(MethodDeclaration md, Void arg) {
 		super.visit(md, arg);
-		System.out.println(md.getNameAsString());
 		methods_list.add(new JavaMethod(md.getNameAsString(), md));
 	}
 	
