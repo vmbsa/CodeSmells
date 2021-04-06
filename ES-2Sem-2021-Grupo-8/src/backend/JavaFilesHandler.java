@@ -5,11 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class JavaFiles {
+public class JavaFilesHandler {
 	
     public static void main(String[] args) {
     	
-        File folder = new File("C:\\Users\\vasco\\Desktop\\pasta");
+        File folder = new File("C:\\Users\\vasco\\Desktop\\teste\\src");
         List<String> result = new ArrayList<>();
         
         search(folder, result);
@@ -22,17 +22,15 @@ public class JavaFiles {
     
     
     public static void search(File folder, List<String> result) {
+    	
         for (final File f : folder.listFiles()) {
 
             if (f.isDirectory()) {
                 search(f, result);
+                JavaPackage p = new JavaPackage(f.getName(), f);
             }
 
-            if (f.isFile()) {
-                if (f.getName().matches(".*\\.java")) {
-                    result.add(f.getAbsolutePath());
-                }
-            }
+            
 
         }
     }
