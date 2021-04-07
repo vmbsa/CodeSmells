@@ -88,6 +88,7 @@ public class Gui_Init {
 					txtpnAsdsa.setText(file.getAbsolutePath());
 					JavaFilesHandler handler = new JavaFilesHandler(file.getAbsolutePath());
 					System.out.println(handler.getNumberOfPackages());
+					System.out.println(handler.countTotalOfClasses());
 				}
 			}
 		});
