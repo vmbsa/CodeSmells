@@ -34,12 +34,10 @@ public class JavaFilesHandler {
 		return numberOfPackages;
 	}
 
-	public int countTotalOfClasses(File folder) {
+	public int countTotalOfClasses() {
 		int total=0;
-		for(final File f: folder.listFiles()) {
-			if(f.isDirectory())
-				countTotalOfClasses(f);
-			JavaPackage p= new JavaPackage(f.getName(),f);
+		for(int i=0;i<package_list.size();i++) {
+		JavaPackage p=package_list.get(i);
 			total=total+p.numberOfClasses();
 		}
 		return total; 
