@@ -10,6 +10,7 @@ public class JavaFilesHandler {
 
 	private List<JavaPackage> package_list = new ArrayList<JavaPackage>();
 	private int numberOfPackages = 0;
+	
 
 	public JavaFilesHandler(String project_path) {
 		this.src = new File(project_path + "\\src");
@@ -33,6 +34,17 @@ public class JavaFilesHandler {
 		return numberOfPackages;
 	}
 
+	public int countTotalOfClasses(File folder) {
+		int total=0;
+		for(final File f: folder.listFiles()) {
+			if(f.isDirectory())
+				countTotalOfClasses(f);
+			JavaPackage p= new JavaPackage(f.getName(),f);
+			total=total+p.numberOfClasses();
+		}
+		return total; 
+	}
+	
 	public static void main(String[] args) {
 
 		String path = "C:\\Users\\vasco\\Desktop\\teste";
@@ -41,5 +53,7 @@ public class JavaFilesHandler {
 		System.out.println(j.getNumberOfPackages());
 
 	}
+
+
 
 }

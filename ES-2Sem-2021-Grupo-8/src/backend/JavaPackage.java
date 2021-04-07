@@ -41,5 +41,7 @@ public class JavaPackage {
 		}
 	}
 	
-
+	public int numberOfClasses() {
+		return class_list.size();
+	}
 }
