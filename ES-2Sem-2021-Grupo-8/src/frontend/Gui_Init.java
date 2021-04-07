@@ -19,6 +19,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextPane;
 import javax.swing.border.TitledBorder;
+
+import backend.JavaFilesHandler;
+
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class Gui_Init {
@@ -81,8 +84,10 @@ public class Gui_Init {
 				int returnVal = fc.showOpenDialog(fc);
 				if (returnVal == JFileChooser.APPROVE_OPTION) {
 					File file = fc.getSelectedFile();
-					System.out.print("Opening: " + file.getAbsolutePath() + ".");
+					System.out.println("Opening: " + file.getAbsolutePath() + ".");
 					txtpnAsdsa.setText(file.getAbsolutePath());
+					JavaFilesHandler handler = new JavaFilesHandler(file.getAbsolutePath());
+					System.out.println(handler.getNumberOfPackages());
 				}
 			}
 		});
