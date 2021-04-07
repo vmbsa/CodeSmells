@@ -159,6 +159,5 @@ public class Gui_Init {
 					.addGap(51))
 		);
 		frame.getContentPane().setLayout(groupLayout);
-
 	}
 }
