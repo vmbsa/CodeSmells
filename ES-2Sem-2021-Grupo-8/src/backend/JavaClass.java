@@ -13,6 +13,8 @@ import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 
 public class JavaClass extends VoidVisitorAdapter<Void>{
 	
+	// blablabla test branches
+	
 	private String name;
 	private File file;
 	private List<JavaMethod> methods_list = new ArrayList<JavaMethod>();
