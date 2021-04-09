@@ -10,9 +10,8 @@ public class JavaFilesHandler {
 
 	private List<JavaPackage> package_list = new ArrayList<JavaPackage>();
 	private int numberOfPackages = 0;
-	
 
-	public JavaFilesHandler(String project_path) {
+	public JavaFilesHandler(String project_path) throws Exception {
 		this.src = new File(project_path + "\\src");
 		search(src);
 	}
@@ -21,7 +20,7 @@ public class JavaFilesHandler {
 
 		for (final File f : folder.listFiles()) {
 			if (f.isDirectory()) {
-				//System.out.println(f.getName());
+				// System.out.println(f.getName());
 				search(f);
 				JavaPackage p = new JavaPackage(f.getName(), f);
 				package_list.add(p);
@@ -35,23 +34,28 @@ public class JavaFilesHandler {
 	}
 
 	public int countTotalOfClasses() {
-		int total=0;
-		for(int i=0;i<package_list.size();i++) {
-		JavaPackage p=package_list.get(i);
-			total=total+p.numberOfClasses();
+		int total = 0;
+		for (int i = 0; i < package_list.size(); i++) {
+			JavaPackage p = package_list.get(i);
+			total = total + p.numberOfClasses();
 		}
-		return total; 
+		return total;
 	}
-	
+
 	public static void main(String[] args) {
 
 		String path = "C:\\Users\\vasco\\Desktop\\teste";
 
-		JavaFilesHandler j = new JavaFilesHandler(path);
-		System.out.println(j.getNumberOfPackages());
+		JavaFilesHandler j;
+		try {
+			j = new JavaFilesHandler(path);
+			System.out.println(j.getNumberOfPackages());
 
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
-
-
 
 }
