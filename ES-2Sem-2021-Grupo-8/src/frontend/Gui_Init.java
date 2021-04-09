@@ -87,11 +87,10 @@ public class Gui_Init {
 				int returnVal = fc.showOpenDialog(fc);
 				if (returnVal == JFileChooser.APPROVE_OPTION) {
 					File file = fc.getSelectedFile();
-					System.out.println("Opening: " + file.getAbsolutePath() + ".");
-					txtpnAsdsa.setText(file.getAbsolutePath());
-					
 					try {
 						handler = new JavaFilesHandler(file.getAbsolutePath());
+						txtpnAsdsa.setText(file.getAbsolutePath());
+						error_message.setText("");
 					} catch (Exception e1) {
 						error_message.setText("Seleciona um projeto v\u00E1lido");
 						error_message.setForeground(Color.RED);
