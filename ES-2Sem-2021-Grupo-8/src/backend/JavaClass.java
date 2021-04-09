@@ -28,6 +28,7 @@ public class JavaClass extends VoidVisitorAdapter<Void>{
 			e.printStackTrace();
 		}
 		System.out.println("classe " + name + " has " + getNOMClass() + " methods");
+		
 	}
 
 	public String getName() {
