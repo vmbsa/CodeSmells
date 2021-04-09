@@ -14,15 +14,7 @@ public class JavaPackage {
 	public JavaPackage(String name, File file) {
 		this.name = name;
 		this.file = file;
-		loadClasses();
-//		System.out.println("Classes do package " + name);
-//		for(int i = 0; i < class_list.size(); i++) {
-//			System.out.println(class_list.get(i).getName());
-//		}
-	}
-	
-	public List<JavaClass> getClasses() {
-		return class_list;
+		getClasses();
 	}
 	
 	
@@ -30,7 +22,7 @@ public class JavaPackage {
 		return name;
 	}
 	
-	private void loadClasses() {
+	private void getClasses() {
 		for (File f : file.listFiles()) {
 			if (f.isFile()) {
                 if (f.getName().matches(".*\\.java")) {
@@ -41,7 +33,5 @@ public class JavaPackage {
 		}
 	}
 	
-	public int numberOfClasses() {
-		return class_list.size();
-	}
+
 }

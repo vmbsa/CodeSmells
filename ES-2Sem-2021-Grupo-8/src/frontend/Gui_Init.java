@@ -19,18 +19,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextPane;
 import javax.swing.border.TitledBorder;
-
-import backend.JavaFilesHandler;
-
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class Gui_Init {
 
 	private JFrame frame;
 	private JTextPane txtpnAsdsa = new JTextPane();
-	
-	private JLabel error_message = new JLabel("");
-	private JavaFilesHandler handler;
 
 	/**
 	 * Launch the application.
@@ -87,17 +81,8 @@ public class Gui_Init {
 				int returnVal = fc.showOpenDialog(fc);
 				if (returnVal == JFileChooser.APPROVE_OPTION) {
 					File file = fc.getSelectedFile();
-					try {
-						handler = new JavaFilesHandler(file.getAbsolutePath());
-						txtpnAsdsa.setText(file.getAbsolutePath());
-						error_message.setText("");
-					} catch (Exception e1) {
-						error_message.setText("Seleciona um projeto v\u00E1lido");
-						error_message.setForeground(Color.RED);
-						txtpnAsdsa.setText("");
-						
-						
-					}
+					System.out.print("Opening: " + file.getAbsolutePath() + ".");
+					txtpnAsdsa.setText(file.getAbsolutePath());
 				}
 			}
 		});
@@ -131,38 +116,34 @@ public class Gui_Init {
 
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(1098, Short.MAX_VALUE)
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addContainerGap(1096, Short.MAX_VALUE)
 					.addComponent(lblNewLabel)
 					.addGap(115))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(469, Short.MAX_VALUE)
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addContainerGap(468, Short.MAX_VALUE)
 					.addComponent(lblNewLabel_1)
 					.addGap(548))
-				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(359)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 						.addComponent(btnNewButton_1_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 						.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE))
 					.addGap(18)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(error_message, GroupLayout.PREFERRED_SIZE, 214, GroupLayout.PREFERRED_SIZE)
-						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-							.addComponent(btnNewButton_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addComponent(txtpnAsdsa, GroupLayout.DEFAULT_SIZE, 498, Short.MAX_VALUE)))
-					.addContainerGap(150, Short.MAX_VALUE))
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(btnNewButton_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(txtpnAsdsa, GroupLayout.DEFAULT_SIZE, 498, Short.MAX_VALUE))
+					.addContainerGap(148, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(23)
-					.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 304, Short.MAX_VALUE)
+					.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 302, Short.MAX_VALUE)
 					.addGap(28)
 					.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
-					.addGap(76)
-					.addComponent(error_message)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGap(99)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 						.addComponent(txtpnAsdsa, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE))
@@ -173,5 +154,6 @@ public class Gui_Init {
 					.addGap(51))
 		);
 		frame.getContentPane().setLayout(groupLayout);
+
 	}
 }
