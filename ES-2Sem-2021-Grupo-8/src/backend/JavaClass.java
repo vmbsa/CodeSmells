@@ -10,14 +10,12 @@ import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 
+public class JavaClass extends VoidVisitorAdapter<Void> {
 
-public class JavaClass extends VoidVisitorAdapter<Void>{
-	
 	private String name;
 	private File file;
 	private List<JavaMethod> methods_list = new ArrayList<JavaMethod>();
-	
-	
+
 	public JavaClass(String name, File file) {
 		this.name = name;
 		this.file = file;
@@ -27,23 +25,26 @@ public class JavaClass extends VoidVisitorAdapter<Void>{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		System.out.println("classe " + name + " has " + getNOMClass() + " methods");
 	}
 
 	public String getName() {
 		return name;
 	}
-	
+
 	@Override
 	public void visit(MethodDeclaration md, Void arg) {
 		super.visit(md, arg);
 		methods_list.add(new JavaMethod(md.getNameAsString(), md));
 	}
-	
-	
+
 	private void getMethods() throws FileNotFoundException {
 		final CompilationUnit comp = StaticJavaParser.parse(file);
 		visit(comp, null);
 	}
 
-}
+	public int getNOMClass() {
+		return methods_list.size();
+	}
 
+}
