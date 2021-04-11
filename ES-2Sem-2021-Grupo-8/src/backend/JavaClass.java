@@ -25,7 +25,7 @@ public class JavaClass extends VoidVisitorAdapter<Void> {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("classe " + name + " has " + getNOMClass() + " methods");
+
 	}
 
 	public String getName() {
@@ -46,5 +46,5 @@ public class JavaClass extends VoidVisitorAdapter<Void> {
 	public int getNOMClass() {
 		return methods_list.size();
 	}
-
+  
 }
