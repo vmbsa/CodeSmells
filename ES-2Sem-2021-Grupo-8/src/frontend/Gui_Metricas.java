@@ -99,11 +99,11 @@ public class Gui_Metricas extends JFrame {
 					String excelPath = fc.getSelectedFile().getAbsolutePath();
 					Excel_Helper eh = new Excel_Helper(excelPath);
 					ArrayList<String> helper=eh.readExcelSheet(true);
-					String[] abc = helper.get(0).split("|");
-					System.out.println(Arrays.toString(abc));
+					System.out.println(helper.get(0));
+					
+
 					
 					DefaultTableModel dtm = new DefaultTableModel();
-					dtm.addColumn("id");
 					dtm.addColumn("MethodID");
 					dtm.addColumn("package");
 					dtm.addColumn("class");
@@ -115,9 +115,12 @@ public class Gui_Metricas extends JFrame {
 					dtm.addColumn("CYCLO_method");
 					dtm.addColumn("is_God_Class");
 					dtm.addColumn("is_Long_Method");
-					for (int a= 0; a<helper.size();a++) {
-						int i = helper.get(a).indexOf("|");
-						dtm.addRow(new Object[] {helper.get(a).substring(0, i),helper.get(a).substring(1, i),helper.get(a).substring(2, i)});
+					for (int a= 1; a<helper.size();a++) {
+						String[] abc = helper.get(a).split("\\|");
+						System.out.println(Arrays.toString(abc));
+						dtm.addRow(new Object[] {(int) Double.parseDouble(abc[0]),abc[1],abc[2],abc[3],
+								(int) Double.parseDouble(abc[4]),(int) Double.parseDouble(abc[5]),(int) Double.parseDouble(abc[6])
+								,abc[7],(int) Double.parseDouble(abc[8]),(int) Double.parseDouble(abc[9]),abc[10]});
 					}
 					tableExcel.setModel(dtm);
 

@@ -34,6 +34,7 @@ public class Excel_Helper {
 					for (Cell currentCell : currentRow) {
 						String helper=printCellContents(currentCell);
 						row=row.concat(helper);
+						
 					}
 //					System.out.println(row);
 					rows.add(row);
@@ -68,18 +69,16 @@ public class Excel_Helper {
 			row=row.concat(currentCell.getBooleanCellValue() + "|");
 			//System.out.print(currentCell.getBooleanCellValue() + "|");
 			break;
-		case FORMULA:
-			row=row.concat(currentCell.getCellFormula() + "|");
-			//System.out.print(currentCell.getCellFormula() + "|");
-			break;
-		case BLANK:
-			row=row.concat("");
-			//System.out.print("");
-			break;
+//		case BLANK:
+//			row=row.concat(" ");
+//			System.out.print("sadsads");
+//			break;
 		default:
-			row=row.concat("/n");
+			row=row.concat(" ");
+			System.out.print("sadsads");
 			//System.out.println();
 		}
+		System.out.println(currentCell.getCellType());
 //		System.out.println(row);
 		return row;
 	}
