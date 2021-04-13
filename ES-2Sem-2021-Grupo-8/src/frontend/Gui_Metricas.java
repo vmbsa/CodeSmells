@@ -15,13 +15,12 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JTable;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.table.DefaultTableModel;
 
 import backend.Excel_Helper;
-import backend.Excel_Reader;
-import javax.swing.JScrollBar;
 
 public class Gui_Metricas extends JFrame {
 

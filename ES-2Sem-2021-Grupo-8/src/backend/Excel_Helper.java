@@ -61,7 +61,7 @@ public class Excel_Helper {
 				row=row.concat(currentCell.getDateCellValue() + "|");
 				//System.out.print(currentCell.getDateCellValue() + "|");
 			} else {
-				row=row.concat(currentCell.getNumericCellValue() + "|");
+				row = row.concat(currentCell.getNumericCellValue() + "|");
 				//System.out.print(currentCell.getNumericCellValue() + "|");
 			}
 			break;
