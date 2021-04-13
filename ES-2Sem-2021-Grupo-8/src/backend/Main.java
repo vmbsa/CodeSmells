@@ -1,5 +1,5 @@
 package backend;
 
-public class Main {
+public class Main{
 
 }

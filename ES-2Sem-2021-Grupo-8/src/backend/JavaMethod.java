@@ -22,7 +22,7 @@ public class JavaMethod {
 		String[] lines = md.getBody().toString().split("\r\n|\r|\n");
 		size = lines.length;
 		// apagar depois de verem que funcemina
-		// System.out.println("metodo " + name + " tem " + size + " linhas");
+		//System.out.println("metodo " + name + " tem " + size + " linhas");
 	}
 
 }
