@@ -1,5 +1,6 @@
 package frontend;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.SystemColor;
@@ -21,9 +22,10 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.table.DefaultTableModel;
 
 import backend.Excel_Helper;
-import java.awt.Color;
 
 public class Gui_Metricas extends JFrame {
+	
+	private String excel_path;
 
 	/**
 	 * 
@@ -38,7 +40,7 @@ public class Gui_Metricas extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Gui_Metricas window = new Gui_Metricas();
+					Gui_Metricas window = new Gui_Metricas("C:\\Users\\Lourenco\\Desktop\\LEI\\Aula1_metrics.xlsx");
 					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -50,7 +52,8 @@ public class Gui_Metricas extends JFrame {
 	/**
 	 * Create the application.
 	 */
-	public Gui_Metricas() {
+	public Gui_Metricas(String excel_path) {
+		this.excel_path = excel_path;
 		initialize();
 	}
 
@@ -58,49 +61,35 @@ public class Gui_Metricas extends JFrame {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		
+		tableExcel = new JTable();
+		
+		Excel_Helper eh = new Excel_Helper(excel_path);
+		ArrayList<String> helper=eh.readExcelSheet(true);
+		DefaultTableModel dtm = new DefaultTableModel();
+		dtm.addColumn("MethodID");
+		dtm.addColumn("package");
+		dtm.addColumn("class");
+		dtm.addColumn("method");
+		dtm.addColumn("NOM_class");
+		dtm.addColumn("LOC_class");
+		dtm.addColumn("WMC_class");
+		dtm.addColumn("LOC_method");
+		dtm.addColumn("CYCLO_method");
+		dtm.addColumn("is_God_Class");
+		dtm.addColumn("is_Long_Method");
+		for (int a= 1; a<helper.size();a++) {
+			String[] abc = helper.get(a).split("\\|");
+			dtm.addRow(new Object[] {(int) Double.parseDouble(abc[0]),abc[1],abc[2],abc[3],
+					(int) Double.parseDouble(abc[4]),(int) Double.parseDouble(abc[5]),(int) Double.parseDouble(abc[6])
+					,abc[7],(int) Double.parseDouble(abc[8]),(int) Double.parseDouble(abc[9]),abc[10]});
+		}
+		tableExcel.setModel(dtm);
 
 		getContentPane().setBackground(SystemColor.text);
 
 		JLabel lblNewLabel_2 = new JLabel("M\u00E9tricas");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 40));
-
-		JButton btnVerExcel = new JButton("Ver Excel");
-		btnVerExcel.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-
-				JFileChooser fc = new JFileChooser();
-				int result = fc.showOpenDialog(null);
-				if (result == JFileChooser.APPROVE_OPTION) {
-					String excelPath = fc.getSelectedFile().getAbsolutePath();
-					Excel_Helper eh = new Excel_Helper(excelPath);
-					ArrayList<String> helper=eh.readExcelSheet(true);
-					DefaultTableModel dtm = new DefaultTableModel();
-					dtm.addColumn("MethodID");
-					dtm.addColumn("package");
-					dtm.addColumn("class");
-					dtm.addColumn("method");
-					dtm.addColumn("NOM_class");
-					dtm.addColumn("LOC_class");
-					dtm.addColumn("WMC_class");
-					dtm.addColumn("LOC_method");
-					dtm.addColumn("CYCLO_method");
-					dtm.addColumn("is_God_Class");
-					dtm.addColumn("is_Long_Method");
-					for (int a= 1; a<helper.size();a++) {
-						String[] abc = helper.get(a).split("\\|");
-						dtm.addRow(new Object[] {(int) Double.parseDouble(abc[0]),abc[1],abc[2],abc[3],
-								(int) Double.parseDouble(abc[4]),(int) Double.parseDouble(abc[5]),(int) Double.parseDouble(abc[6])
-								,abc[7],(int) Double.parseDouble(abc[8]),(int) Double.parseDouble(abc[9]),abc[10]});
-					}
-					tableExcel.setModel(dtm);
-				}
-			}
-		});
-		btnVerExcel.setFocusable(false);
-		btnVerExcel.setBorderPainted(false);
-		btnVerExcel.setBorder(null);
-		btnVerExcel.setBackground(SystemColor.textHighlight);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(null);
@@ -109,18 +98,16 @@ public class Gui_Metricas extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
+			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(486)
 					.addComponent(lblNewLabel_2)
-					.addContainerGap(47, Short.MAX_VALUE))
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addContainerGap(581, Short.MAX_VALUE))
+				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(76)
 					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 532, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(btnVerExcel, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(scrollPane, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 528, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 528, GroupLayout.PREFERRED_SIZE)
 					.addGap(25))
 		);
 		groupLayout.setVerticalGroup(
@@ -132,12 +119,9 @@ public class Gui_Metricas extends JFrame {
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(panel, GroupLayout.PREFERRED_SIZE, 252, GroupLayout.PREFERRED_SIZE)
 						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 254, GroupLayout.PREFERRED_SIZE))
-					.addGap(94)
-					.addComponent(btnVerExcel, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
-					.addGap(83))
+					.addGap(218))
 		);
 		
-		tableExcel = new JTable();
 		scrollPane.setViewportView(tableExcel);
 		
 				JLabel lblNewLabel = new JLabel("N\u00FAmero de packages");

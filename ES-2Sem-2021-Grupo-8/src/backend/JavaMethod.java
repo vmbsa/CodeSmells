@@ -8,8 +8,8 @@ public class JavaMethod {
 	private MethodDeclaration md;
 	private int size;
 
-	public JavaMethod(String name, MethodDeclaration md) {
-		this.name = name;
+	public JavaMethod(MethodDeclaration md) {
+		this.name = md.getDeclarationAsString();
 		this.md = md;
 	}
 
@@ -17,9 +17,10 @@ public class JavaMethod {
 		return name;
 	}
 
-	public void getLOCMethod() {
+	public int getLOCMethod() {
 		String[] lines = md.getBody().toString().split("\r\n|\r|\n");
 		size = lines.length;
+		return size;
 	}
 	
 	public int getCYCLO_method() {
