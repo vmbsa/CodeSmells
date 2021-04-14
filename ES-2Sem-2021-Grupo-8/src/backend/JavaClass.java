@@ -55,7 +55,6 @@ public class JavaClass extends VoidVisitorAdapter<Void> {
 				counter++;
 		}
 		size=lines.length-counter;
-		System.out.println(name + " " + size);
 	}
 
 	private void getMethods() throws FileNotFoundException {
@@ -70,6 +69,14 @@ public class JavaClass extends VoidVisitorAdapter<Void> {
 
 	public int getNOMClass() {
 		return methods_list.size();
+	}
+
+	public int getWMCClass() {
+		int WMCCounter = 0;
+		for (JavaMethod method : methods_list) {
+			WMCCounter += method.getCYCLO_method();
+		}
+		return WMCCounter;
 	}
 
 }

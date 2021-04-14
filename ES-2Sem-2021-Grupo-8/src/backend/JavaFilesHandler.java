@@ -20,7 +20,6 @@ public class JavaFilesHandler {
 	public void search(File folder) {
 		for (final File f : folder.listFiles()) {
 			if (f.isDirectory()) {
-				// System.out.println(f.getName());
 				search(f);
 				JavaPackage p = new JavaPackage(f.getName(), f);
 				package_list.add(p);
@@ -57,12 +56,11 @@ public class JavaFilesHandler {
 
 	public static void main(String[] args) {
 
-		String path = "C:\\Users\\vasco\\Desktop\\teste";
+		String path = "C:\\Users\\Lourenco\\Desktop\\LEI\\2º Ano\\PCD\\Aula1";
 
 		JavaFilesHandler j;
 		try {
 			j = new JavaFilesHandler(path);
-			System.out.println(j.getNumberOfPackages() + "pacotes no total");
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

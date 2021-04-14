@@ -14,10 +14,6 @@ public class JavaPackage {
 		this.name = name;
 		this.file = file;
 		loadClasses();
-//		System.out.println("Classes do package " + name);
-//		for(int i = 0; i < class_list.size(); i++) {
-//			System.out.println(class_list.get(i).getName());
-//		}
 	}
 
 	public List<JavaClass> getClasses() {
