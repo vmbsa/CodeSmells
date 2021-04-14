@@ -20,10 +20,15 @@ import javax.swing.JLabel;
 import javax.swing.JTextPane;
 import javax.swing.border.TitledBorder;
 
+import backend.JavaFilesHandler;
+
 public class Gui_Init {
 
 	private JFrame frame;
 	private JTextPane txtpnAsdsa = new JTextPane();
+	
+	private JLabel error_message = new JLabel("");
+	private JavaFilesHandler handler;
 
 	/**
 	 * Launch the application.
@@ -80,8 +85,17 @@ public class Gui_Init {
 				int returnVal = fc.showOpenDialog(fc);
 				if (returnVal == JFileChooser.APPROVE_OPTION) {
 					File file = fc.getSelectedFile();
-					System.out.print("Opening: " + file.getAbsolutePath() + ".");
-					txtpnAsdsa.setText(file.getAbsolutePath());
+					try {
+						handler = new JavaFilesHandler(file.getAbsolutePath());
+						txtpnAsdsa.setText(file.getAbsolutePath());
+						error_message.setText("");
+					} catch (Exception e1) {
+						error_message.setText("Seleciona um projeto v\u00E1lido");
+						error_message.setForeground(Color.RED);
+						txtpnAsdsa.setText("");
+						
+						
+					}
 				}
 			}
 		});
