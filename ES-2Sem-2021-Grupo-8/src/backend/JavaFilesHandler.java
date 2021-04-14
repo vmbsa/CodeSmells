@@ -53,6 +53,19 @@ public class JavaFilesHandler {
 		}
 		return total;
 	}
+	
+	public int countTotalOfCodeLines() {
+		int total = 0;
+		for (int i = 0; i < package_list.size(); i++) {
+			JavaPackage p = package_list.get(i);
+			List<JavaClass> class_list = p.getClasses();
+			for (int j = 0; j<class_list.size(); j++) {
+				JavaClass jc = class_list.get(j);
+				total = total + jc.getLOCClass();
+			}
+		}
+		return total;
+	}
 
 	public static void main(String[] args) {
 
