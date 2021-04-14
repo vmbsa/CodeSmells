@@ -11,7 +11,6 @@ public class JavaMethod {
 	public JavaMethod(String name, MethodDeclaration md) {
 		this.name = name;
 		this.md = md;
-		getLOCMethod();
 	}
 
 	public String getName() {

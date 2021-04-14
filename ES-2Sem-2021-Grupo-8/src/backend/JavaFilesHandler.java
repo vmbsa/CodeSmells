@@ -4,12 +4,12 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class JavaFilesHandler {
-
-	private File src;
-
+	
 	private List<JavaPackage> package_list = new ArrayList<JavaPackage>();
 	private int numberOfPackages = 0;
+	private File src;
 
 	public JavaFilesHandler(String project_path) throws Exception {
 		this.src = new File(project_path + "\\src");
