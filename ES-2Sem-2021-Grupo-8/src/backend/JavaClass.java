@@ -35,6 +35,10 @@ public class JavaClass extends VoidVisitorAdapter<Void> {
 		}
 	}
 
+	public List<JavaMethod> getMethods_list() {
+		return methods_list;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -42,7 +46,7 @@ public class JavaClass extends VoidVisitorAdapter<Void> {
 	@Override
 	public void visit(MethodDeclaration md, Void arg) {
 		super.visit(md, arg);
-		methods_list.add(new JavaMethod(md.getNameAsString(), md));
+		methods_list.add(new JavaMethod(md));
 	}
 
 	@Override

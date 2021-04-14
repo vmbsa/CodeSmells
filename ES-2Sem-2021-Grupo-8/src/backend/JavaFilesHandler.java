@@ -4,14 +4,15 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class JavaFilesHandler {
-	
+
 	private List<JavaPackage> package_list = new ArrayList<JavaPackage>();
 	private int numberOfPackages = 0;
 	private File src;
+	private String project_name;
 
 	public JavaFilesHandler(String project_path) throws Exception {
+		this.project_name = new File(project_path).getName();
 		this.src = new File(project_path + "\\src");
 		searchInSrc(src);
 		search(src);
@@ -21,7 +22,12 @@ public class JavaFilesHandler {
 		for (final File f : folder.listFiles()) {
 			if (f.isDirectory()) {
 				search(f);
-				JavaPackage p = new JavaPackage(f.getName(), f);
+				File parent = new File(f.getParent());
+				JavaPackage p;
+				if (!parent.getName().equals("src"))
+					p = new JavaPackage(parent.getName() + "." + f.getName(), f);
+				else
+					p = new JavaPackage(f.getName(), f);
 				package_list.add(p);
 				numberOfPackages++;
 			}
@@ -67,9 +73,17 @@ public class JavaFilesHandler {
 		return total;
 	}
 
+	public String getProjectName() {
+		return project_name;
+	}
+
+	public List<JavaPackage> getPackage_list() {
+		return package_list;
+	}
+
 	public static void main(String[] args) {
 
-		String path = "C:\\Users\\Lourenco\\Desktop\\LEI\\2ยบ Ano\\PCD\\Aula1";
+		String path = "C:\\Users\\Lourenco\\Desktop\\LEI\\2บ Ano\\PCD\\Aula1";
 
 		JavaFilesHandler j;
 		try {
