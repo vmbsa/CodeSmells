@@ -18,14 +18,12 @@ public class JavaMethod {
 		return name;
 	}
 
-	private void getLOCMethod() {
+	public void getLOCMethod() {
 		String[] lines = md.getBody().toString().split("\r\n|\r|\n");
 		size = lines.length;
-		// apagar depois de verem que funcemina
-		//System.out.println("metodo " + name + " tem " + size + " linhas");
 	}
 	
-	private int getCYCLO_method() {
+	public int getCYCLO_method() {
 		String[] cyclos = {"if", "for", "while", "do", "case"};
 		int total = 1; 
 		String[] lines = md.getBody().toString().split("\r\n|\r|\n");
