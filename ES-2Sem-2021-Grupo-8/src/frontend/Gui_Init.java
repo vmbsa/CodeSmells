@@ -50,7 +50,8 @@ public class Gui_Init {
 	 * Create the application.
 	 */
 	public Gui_Init() {
-		initialize();
+		initialize(); 
+		
 	}
 
 	/**

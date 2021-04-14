@@ -75,7 +75,6 @@ public class Gui_Metricas extends JFrame {
 					String excelPath = fc.getSelectedFile().getAbsolutePath();
 					Excel_Helper eh = new Excel_Helper(excelPath);
 					ArrayList<String> helper=eh.readExcelSheet(true);
-					System.out.println(helper.get(0));
 					DefaultTableModel dtm = new DefaultTableModel();
 					dtm.addColumn("MethodID");
 					dtm.addColumn("package");
@@ -90,7 +89,6 @@ public class Gui_Metricas extends JFrame {
 					dtm.addColumn("is_Long_Method");
 					for (int a= 1; a<helper.size();a++) {
 						String[] abc = helper.get(a).split("\\|");
-						System.out.println(Arrays.toString(abc));
 						dtm.addRow(new Object[] {(int) Double.parseDouble(abc[0]),abc[1],abc[2],abc[3],
 								(int) Double.parseDouble(abc[4]),(int) Double.parseDouble(abc[5]),(int) Double.parseDouble(abc[6])
 								,abc[7],(int) Double.parseDouble(abc[8]),(int) Double.parseDouble(abc[9]),abc[10]});

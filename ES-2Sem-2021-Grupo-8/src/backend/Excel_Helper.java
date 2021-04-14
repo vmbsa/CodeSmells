@@ -36,7 +36,6 @@ public class Excel_Helper {
 						row=row.concat(helper);
 						
 					}
-//					System.out.println(row);
 					rows.add(row);
 					row="";
 				}
@@ -54,32 +53,20 @@ public class Excel_Helper {
 		switch (currentCell.getCellType()) {
 		case STRING:
 			row=row.concat(currentCell.getRichStringCellValue().getString() + "|");
-			//System.out.print(currentCell.getRichStringCellValue().getString() + "|");
 			break;
 		case NUMERIC:
 			if (DateUtil.isCellDateFormatted(currentCell)) {
 				row=row.concat(currentCell.getDateCellValue() + "|");
-				//System.out.print(currentCell.getDateCellValue() + "|");
 			} else {
 				row = row.concat(currentCell.getNumericCellValue() + "|");
-				//System.out.print(currentCell.getNumericCellValue() + "|");
 			}
 			break;
 		case BOOLEAN:
 			row=row.concat(currentCell.getBooleanCellValue() + "|");
-			//System.out.print(currentCell.getBooleanCellValue() + "|");
 			break;
-//		case BLANK:
-//			row=row.concat(" ");
-//			System.out.print("sadsads");
-//			break;
 		default:
 			row=row.concat(" ");
-			System.out.print("sadsads");
-			//System.out.println();
 		}
-		System.out.println(currentCell.getCellType());
-//		System.out.println(row);
 		return row;
 	}
 }
