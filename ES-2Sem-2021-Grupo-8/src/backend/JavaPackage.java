@@ -42,4 +42,13 @@ public class JavaPackage {
 	public int numberOfClasses() {
 		return class_list.size();
 	}
+	
+	public int number_of_methods_in_package() {
+		int total = 0;
+		for (int i = 0; i<this.class_list.size(); i++) {
+			JavaClass a = this.class_list.get(i);
+			total += a.getNOMClass();
+		}
+		return total;
+	}
 }

@@ -24,7 +24,7 @@ public class JavaMethod {
 	}
 	
 	public int getCYCLO_method() {
-		String[] cyclos = {"if", "for", "while", "do", "case"};
+		String[] cyclos = {"if(","if (", "for(", "for (", "while(", "while (", "do {", "do{", "switch (", "switch("};
 		int total = 1; 
 		String[] lines = md.getBody().toString().split("\r\n|\r|\n");
 		for(int i = 0; i<lines.length ; i++) {
