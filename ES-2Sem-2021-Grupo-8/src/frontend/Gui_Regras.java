@@ -31,9 +31,6 @@ import javax.swing.border.CompoundBorder;
 
 public class Gui_Regras extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JTextField N_Classes;
 	private JTextField N_Ciclos;
@@ -44,33 +41,14 @@ public class Gui_Regras extends JFrame {
 	private String Operator = "";
 	private String Operator2 = "";
 	private File file;
+	
+	private String excel_file_path;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Gui_Regras window = new Gui_Regras();
-					window.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the application.
-	 */
-	public Gui_Regras() {
+	public Gui_Regras(String excel_file_path) {
+		this.excel_file_path = excel_file_path;
 		initialize();
 	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
+	
 	private void initialize() {
 		setBounds(100, 100, 864, 468);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -206,7 +184,7 @@ public class Gui_Regras extends JFrame {
 		btnNewButton_1_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Gui_Metricas gui_metrics = new Gui_Metricas();
+				Gui_Metricas gui_metrics = new Gui_Metricas(excel_file_path);
 				gui_metrics.setVisible(true);
 				setVisible(false);
 			}

@@ -6,14 +6,35 @@ public class JavaMethod {
 
 	private String name;
 	private MethodDeclaration md;
-	
-	public JavaMethod(String name, MethodDeclaration md) {
-		this.name = name;
+	private int size;
+
+	public JavaMethod(MethodDeclaration md) {
+		this.name = md.getDeclarationAsString();
 		this.md = md;
 	}
 
 	public String getName() {
 		return name;
 	}
+
+	public int getLOCMethod() {
+		String[] lines = md.getBody().toString().split("\r\n|\r|\n");
+		size = lines.length;
+		return size;
+	}
 	
+	public int getCYCLO_method() {
+		String[] cyclos = {"if(","if (", "for(", "for (", "while(", "while (", "do {", "do{", "switch (", "switch("};
+		int total = 1; 
+		String[] lines = md.getBody().toString().split("\r\n|\r|\n");
+		for(int i = 0; i<lines.length ; i++) {
+			for (int j = 0; j<cyclos.length ; j++) {
+				if(lines[i].contains(cyclos[j])) {
+					total ++;
+				}
+			}
+		}
+		return total;
+	}
+
 }
