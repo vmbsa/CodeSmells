@@ -27,39 +27,14 @@ public class Gui_Metricas extends JFrame {
 	
 	private String excel_path;
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JTable tableExcel;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Gui_Metricas window = new Gui_Metricas("C:\\Users\\Lourenco\\Desktop\\LEI\\Aula1_metrics.xlsx");
-					window.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the application.
-	 */
 	public Gui_Metricas(String excel_path) {
 		this.excel_path = excel_path;
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	private void initialize() {
 		
 		tableExcel = new JTable();

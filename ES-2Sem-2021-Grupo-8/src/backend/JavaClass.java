@@ -1,18 +1,13 @@
 package backend;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.github.javaparser.StaticJavaParser;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
-import com.github.javaparser.ast.body.InitializerDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 
@@ -21,7 +16,6 @@ public class JavaClass extends VoidVisitorAdapter<Void> {
 	private String name;
 	private File file;
 	private List<JavaMethod> methods_list = new ArrayList<JavaMethod>();
-	private List<String> string_list = new ArrayList<String>();
 	private int size;
 
 	public JavaClass(String name, File file) {
@@ -30,7 +24,6 @@ public class JavaClass extends VoidVisitorAdapter<Void> {
 		try {
 			getMethods();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

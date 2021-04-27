@@ -162,7 +162,6 @@ public class Excel_Helper {
 			Excel_Helper e = new Excel_Helper(j, excel);
 			e.writeExcel();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
 		
