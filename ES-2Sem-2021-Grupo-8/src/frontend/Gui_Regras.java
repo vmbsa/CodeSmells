@@ -31,9 +31,6 @@ import javax.swing.border.CompoundBorder;
 
 public class Gui_Regras extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JTextField N_Classes;
 	private JTextField N_Ciclos;
@@ -47,17 +44,11 @@ public class Gui_Regras extends JFrame {
 	
 	private String excel_file_path;
 
-	/**
-	 * Create the application.
-	 */
 	public Gui_Regras(String excel_file_path) {
 		this.excel_file_path = excel_file_path;
 		initialize();
 	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
+	
 	private void initialize() {
 		setBounds(100, 100, 864, 468);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

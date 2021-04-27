@@ -34,33 +34,15 @@ public class Gui_Init {
 	private JLabel error_message = new JLabel("");
 	private JavaFilesHandler handler;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Gui_Init window = new Gui_Init();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the application.
-	 */
 	public Gui_Init() {
 		initialize();
 
 	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
+	
+	public void show() {
+		frame.setVisible(true);
+	}
+	
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 1227, 690);

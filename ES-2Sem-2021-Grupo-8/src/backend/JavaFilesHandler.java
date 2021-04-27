@@ -80,20 +80,4 @@ public class JavaFilesHandler {
 	public List<JavaPackage> getPackage_list() {
 		return package_list;
 	}
-
-	public static void main(String[] args) {
-
-		String path = "C:\\Users\\Lourenco\\Desktop\\LEI\\2º Ano\\PCD\\Aula1";
-
-		JavaFilesHandler j;
-		try {
-			j = new JavaFilesHandler(path);
-
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
-
 }
