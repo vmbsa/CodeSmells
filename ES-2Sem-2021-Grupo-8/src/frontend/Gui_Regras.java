@@ -1,7 +1,6 @@
 package frontend;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
@@ -32,23 +31,23 @@ import javax.swing.border.CompoundBorder;
 public class Gui_Regras extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private JTextField N_Classes;
-	private JTextField N_Ciclos;
-	private JTextField N_Metodos;
+	private JTextField Limite;
 	private String N_Classes_Regras = "0";
 	private String N_Ciclos_Regras = "0";
 	private String N_Metodos_Regras = "0";
 	private String Operator = "";
 	private String Operator2 = "";
 	private File file;
-	
+
 	private String excel_file_path;
+	private JTextField TextInputVars;
+	private String rules = "";
 
 	public Gui_Regras(String excel_file_path) {
 		this.excel_file_path = excel_file_path;
 		initialize();
 	}
-	
+
 	private void initialize() {
 		setBounds(100, 100, 864, 468);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -56,20 +55,12 @@ public class Gui_Regras extends JFrame {
 
 		JLabel lblNewLabel = new JLabel("Regras");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		
-		JCheckBox CheckBoxClasses = new JCheckBox("");
-		JCheckBox CheckBoxCiclos = new JCheckBox("");
-		JCheckBox CheckBoxMetodos = new JCheckBox("");
-		JCheckBox CheckBoxOperadores = new JCheckBox("");
-		JCheckBox CheckBoxOperadores_2 = new JCheckBox("");
-		JComboBox comboBox = new JComboBox();
-		JComboBox comboBox_2 = new JComboBox();
 
 		JButton btnNewButton = new JButton("Guardar Regra");
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				N_Classes_Regras = N_Classes.getText();
+				N_Classes_Regras = Limite.getText();
 				N_Ciclos_Regras = N_Ciclos.getText();
 				N_Metodos_Regras = N_Metodos.getText();
 				if (!CheckBoxClasses.isSelected())
@@ -86,7 +77,8 @@ public class Gui_Regras extends JFrame {
 				Operator = comboBox.getSelectedItem().toString();
 				System.out.println(Operator);
 				System.out.println(Operator2);
-				String Regra = N_Classes_Regras + ":" + Operator + ":" + N_Ciclos_Regras + ":" +Operator2 + ":" + N_Metodos_Regras;
+				String Regra = N_Classes_Regras + ":" + Operator + ":" + N_Ciclos_Regras + ":" + Operator2 + ":"
+						+ N_Metodos_Regras;
 				String filename = JOptionPane.showInputDialog("File Name:");
 				try {
 					File myObj = new File("Regras/" + filename + ".txt");
@@ -134,11 +126,11 @@ public class Gui_Regras extends JFrame {
 						if (!(parser[0].equals("_"))) {
 							CheckBoxClasses.setSelected(true);
 							N_Classes_Regras = parser[0];
-							N_Classes.setText(parser[0]);
+							Limite.setText(parser[0]);
 						} else {
 							N_Classes_Regras = "0";
-							N_Classes.setText("0");
-							
+							Limite.setText("0");
+
 						}
 
 						if (!(parser[2].equals("_"))) {
@@ -148,24 +140,24 @@ public class Gui_Regras extends JFrame {
 						} else {
 							N_Ciclos_Regras = "0";
 							N_Ciclos.setText("0");
-							
+
 						}
 
-						if (!(parser[4].equals("_"))){
+						if (!(parser[4].equals("_"))) {
 							CheckBoxMetodos.setSelected(true);
 							N_Metodos_Regras = parser[4];
 							N_Metodos.setText(parser[4]);
-						}else{
+						} else {
 							N_Metodos_Regras = "0";
 							N_Metodos.setText("0");
-							
+
 						}
-						if (!(parser[1].equals("_"))){
+						if (!(parser[1].equals("_"))) {
 							CheckBoxOperadores.setSelected(true);
 							comboBox.setSelectedItem(parser[1]);
 							Operator = parser[1];
 						}
-						if (!(parser[3].equals("_"))){
+						if (!(parser[3].equals("_"))) {
 							CheckBoxOperadores_2.setSelected(true);
 							comboBox_2.setSelectedItem(parser[3]);
 							Operator2 = parser[3];
@@ -191,286 +183,180 @@ public class Gui_Regras extends JFrame {
 		});
 		btnNewButton_1_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnNewButton_1_1.setBackground(SystemColor.textHighlight);
-		
-		JPanel panel = new JPanel();
-		panel.setBackground(SystemColor.text);
-		panel.setBorder(new CompoundBorder());
-		
+
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(SystemColor.text);
 		panel_1.setBorder(new CompoundBorder());
-		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBackground(SystemColor.text);
-		panel_2.setBorder(new CompoundBorder());
-		
-		JPanel panel_3 = new JPanel();
-		panel_3.setBackground(SystemColor.text);
-		
-		JPanel panel_3_1 = new JPanel();
-		panel_3_1.setBackground(Color.WHITE);
-		
-		
-		CheckBoxOperadores_2.setBackground(Color.WHITE);
-		
-		
+
+		TextInputVars = new JTextField();
+		TextInputVars.setEditable(false);
+		TextInputVars.setColumns(10);
+
+		JButton Button_Adicionar = new JButton("Adicionar");
+		Button_Adicionar.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		Button_Adicionar.setBackground(SystemColor.textHighlight);
+
+		JButton Button_Remover = new JButton("Limpar");
+
 		
 
+		Button_Remover.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		Button_Remover.setBackground(SystemColor.textHighlight);
+
+		Button_Remover.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				rules="";
+				TextInputVars.setText(rules);
+			}
+		});
+		
+		JComboBox ComboBoxMetricas = new JComboBox();
+
+		JComboBox ChecboxCodeSmell = new JComboBox();
+
+		ChecboxCodeSmell.setModel(new DefaultComboBoxModel(new String[] { "IsLongMethod", "isGodClass" }));
+		ComboBoxMetricas.setModel(new DefaultComboBoxModel(new String[] { "LOC_Class", "WMC_Class", "NOM_class" }));
+
+		ChecboxCodeSmell.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (ChecboxCodeSmell.getSelectedItem().toString() == ("IsLongMethod")) {
+					ComboBoxMetricas
+							.setModel(new DefaultComboBoxModel(new String[] { "LOC_Class", "WMC_Class", "NOM_class" }));
+				} else {
+					ComboBoxMetricas.setModel(new DefaultComboBoxModel(new String[] { "LOC_Method", "CYCLO_Method" }));
+				}
+			}
+		});
+
+		JComboBox comboBoxBigSmall = new JComboBox();
+		comboBoxBigSmall.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		comboBoxBigSmall.setModel(new DefaultComboBoxModel(new String[] { ">", "<" }));
+
+		Limite = new JTextField();
+		N_Classes_Regras = Limite.getText();
+		Limite.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		Limite.setColumns(10);
+
+		JCheckBox CheckBoxOperadores = new JCheckBox("");
+		JComboBox comboBoxOperadores = new JComboBox();
+
+		comboBoxOperadores.setModel(new DefaultComboBoxModel(new String[] { "OR", "AND" }));
+		Operator = comboBoxOperadores.getSelectedItem().toString();
+
+		Button_Adicionar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String Operador = "";
+				if (CheckBoxOperadores.isSelected()) {
+					Operador = comboBoxOperadores.getSelectedItem().toString();
+				} else {
+					Operador = "";
+				}
+				if (rules == "") {
+
+					rules = ComboBoxMetricas.getSelectedItem().toString()
+							+ comboBoxBigSmall.getSelectedItem().toString() + Limite.getText().toString() + " "+ Operador
+							+ " ";
+				} else {
+					rules = rules + ComboBoxMetricas.getSelectedItem().toString()
+							+ comboBoxBigSmall.getSelectedItem().toString() + Limite.getText().toString() + Operador
+							+ " ";
+				}
+				TextInputVars.setText(rules);
+			}
+		});
+
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout
+				.createSequentialGroup().addGap(72)
+				.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(TextInputVars, GroupLayout.PREFERRED_SIZE, 390, GroupLayout.PREFERRED_SIZE)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(338)
-							.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-									.addComponent(btnNewButton_1_1, GroupLayout.PREFERRED_SIZE, 240, GroupLayout.PREFERRED_SIZE))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addContainerGap()
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-										.addComponent(panel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-										.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 357, Short.MAX_VALUE)
-										.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(144)
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-										.addComponent(btnNewButton, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-										.addComponent(btnNewButton_1, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 249, GroupLayout.PREFERRED_SIZE)))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(45)
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addComponent(panel_3, GroupLayout.PREFERRED_SIZE, 124, GroupLayout.PREFERRED_SIZE)
-										.addComponent(panel_3_1, GroupLayout.PREFERRED_SIZE, 124, GroupLayout.PREFERRED_SIZE))))))
-					.addContainerGap(74, Short.MAX_VALUE))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(115)
-					.addComponent(panel_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(panel_3_1, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-					.addComponent(btnNewButton)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(btnNewButton_1)
-					.addGap(68))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(23)
-							.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
-							.addGap(84)
-							.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addGap(60))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(84)
-							.addComponent(panel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addGap(198)))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnNewButton_1_1, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
-					.addGap(48))
-		);
-		
-				
-				CheckBoxOperadores.setBackground(Color.WHITE);
-				
-						comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"OR", "AND"}));
-						Operator2 = comboBox_2.getSelectedItem().toString();
-				GroupLayout gl_panel_3_1 = new GroupLayout(panel_3_1);
-				gl_panel_3_1.setHorizontalGroup(
-					gl_panel_3_1.createParallelGroup(Alignment.LEADING)
-						.addGap(0, 124, Short.MAX_VALUE)
-						.addGroup(gl_panel_3_1.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(CheckBoxOperadores_2)
-							.addGap(18)
-							.addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
-							.addContainerGap(19, Short.MAX_VALUE))
-				);
-				gl_panel_3_1.setVerticalGroup(
-					gl_panel_3_1.createParallelGroup(Alignment.LEADING)
-						.addGap(0, 62, Short.MAX_VALUE)
-						.addGroup(gl_panel_3_1.createSequentialGroup()
-							.addContainerGap(18, Short.MAX_VALUE)
-							.addComponent(CheckBoxOperadores_2)
-							.addGap(23))
-						.addGroup(gl_panel_3_1.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
-							.addContainerGap(18, Short.MAX_VALUE))
-				);
-				panel_3_1.setLayout(gl_panel_3_1);
-				
-						
-						comboBox.setModel(new DefaultComboBoxModel(new String[] { "OR", "AND" }));
-						Operator = comboBox.getSelectedItem().toString();
-				GroupLayout gl_panel_3 = new GroupLayout(panel_3);
-				gl_panel_3.setHorizontalGroup(
-					gl_panel_3.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel_3.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(CheckBoxOperadores)
-							.addGap(18)
-							.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
-							.addContainerGap(224, Short.MAX_VALUE))
-				);
-				gl_panel_3.setVerticalGroup(
-					gl_panel_3.createParallelGroup(Alignment.TRAILING)
-						.addGroup(gl_panel_3.createSequentialGroup()
-							.addContainerGap(18, Short.MAX_VALUE)
-							.addComponent(CheckBoxOperadores)
-							.addGap(23))
-						.addGroup(Alignment.LEADING, gl_panel_3.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
-							.addContainerGap(18, Short.MAX_VALUE))
-				);
-				panel_3.setLayout(gl_panel_3);
-		
-				
-				CheckBoxMetodos.setBackground(Color.WHITE);
-				
-						JLabel lblNmeroDeMtodos = new JLabel("N\u00FAmero de m\u00E9todos");
-						lblNmeroDeMtodos.setFont(new Font("Tahoma", Font.PLAIN, 20));
-				
-						N_Metodos = new JTextField();
-						N_Metodos_Regras = N_Metodos.getText();
-						N_Metodos.setFont(new Font("Tahoma", Font.PLAIN, 20));
-						N_Metodos.setColumns(10);
-				
-				JComboBox comboBox_1_2 = new JComboBox();
-				comboBox_1_2.setModel(new DefaultComboBoxModel(new String[] {">", "<"}));
-				comboBox_1_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
-				GroupLayout gl_panel_2 = new GroupLayout(panel_2);
-				gl_panel_2.setHorizontalGroup(
-					gl_panel_2.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel_2.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(CheckBoxMetodos)
-							.addGap(18)
-							.addComponent(lblNmeroDeMtodos, GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
-							.addGap(18)
-							.addComponent(comboBox_1_2, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(N_Metodos, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE)
-							.addContainerGap())
-				);
-				gl_panel_2.setVerticalGroup(
-					gl_panel_2.createParallelGroup(Alignment.TRAILING)
-						.addGroup(gl_panel_2.createSequentialGroup()
-							.addGap(20)
-							.addComponent(CheckBoxMetodos)
-							.addContainerGap(24, Short.MAX_VALUE))
-						.addGroup(gl_panel_2.createSequentialGroup()
-							.addContainerGap(13, Short.MAX_VALUE)
-							.addGroup(gl_panel_2.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblNmeroDeMtodos, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
-								.addComponent(N_Metodos, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBox_1_2, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE))
-							.addContainerGap())
-				);
-				panel_2.setLayout(gl_panel_2);
-				
-						JLabel lblNewLabel_1_1 = new JLabel("N\u00FAmero Ciclos");
-						lblNewLabel_1_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-				
-						N_Ciclos = new JTextField();
-						N_Ciclos_Regras = N_Ciclos.getText();
-						N_Ciclos.setFont(new Font("Tahoma", Font.PLAIN, 20));
-						N_Ciclos.setColumns(10);
-				
-						
-						CheckBoxCiclos.setBackground(Color.WHITE);
-				
-				JComboBox comboBox_1_1 = new JComboBox();
-				comboBox_1_1.setModel(new DefaultComboBoxModel(new String[] {">", "<"}));
-				comboBox_1_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-				GroupLayout gl_panel_1 = new GroupLayout(panel_1);
-				gl_panel_1.setHorizontalGroup(
-					gl_panel_1.createParallelGroup(Alignment.LEADING)
+								.addComponent(Button_Adicionar, GroupLayout.PREFERRED_SIZE, 192,
+										GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.RELATED).addComponent(Button_Remover,
+										GroupLayout.PREFERRED_SIZE, 192, GroupLayout.PREFERRED_SIZE)))
+				.addPreferredGap(ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
+				.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(btnNewButton, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE,
+								GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(btnNewButton_1, GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE).addComponent(
+								btnNewButton_1_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+				.addGap(35))
+				.addGroup(groupLayout.createSequentialGroup().addGap(336)
+						.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED, 221, Short.MAX_VALUE)
+						.addComponent(ChecboxCodeSmell, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
+						.addGap(34))
+				.addGroup(groupLayout.createSequentialGroup().addGap(33)
+						.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 805, Short.MAX_VALUE).addContainerGap()));
+		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.TRAILING).addGroup(groupLayout
+				.createSequentialGroup().addGap(29)
+				.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
+						.addComponent(ChecboxCodeSmell, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE))
+				.addGap(38)
+				.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+				.addPreferredGap(ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+				.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(btnNewButton)
+						.addComponent(TextInputVars, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE))
+				.addPreferredGap(ComponentPlacement.UNRELATED)
+				.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(btnNewButton_1)
+						.addComponent(Button_Remover, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+						.addComponent(Button_Adicionar, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE))
+				.addPreferredGap(ComponentPlacement.RELATED)
+				.addComponent(btnNewButton_1_1, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
+				.addGap(47)));
+
+		JPanel panel_3 = new JPanel();
+		panel_3.setBackground(SystemColor.text);
+
+		CheckBoxOperadores.setBackground(Color.WHITE);
+
+		GroupLayout gl_panel_3 = new GroupLayout(panel_3);
+		gl_panel_3
+				.setHorizontalGroup(
+						gl_panel_3.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_panel_3.createSequentialGroup().addContainerGap()
+										.addComponent(CheckBoxOperadores).addGap(18).addComponent(comboBoxOperadores,
+												GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
+										.addContainerGap(19, Short.MAX_VALUE)));
+		gl_panel_3.setVerticalGroup(gl_panel_3.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_3.createSequentialGroup().addContainerGap(18, Short.MAX_VALUE)
+						.addComponent(CheckBoxOperadores).addGap(23))
+				.addGroup(gl_panel_3.createSequentialGroup().addContainerGap()
+						.addComponent(comboBoxOperadores, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+						.addContainerGap(18, Short.MAX_VALUE)));
+		panel_3.setLayout(gl_panel_3);
+		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
+		gl_panel_1.setHorizontalGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_1.createSequentialGroup().addGap(39)
+						.addComponent(ComboBoxMetricas, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
+						.addGap(95)
+						.addComponent(comboBoxBigSmall, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE)
+						.addGap(105).addComponent(Limite, GroupLayout.PREFERRED_SIZE, 68, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED, 131, Short.MAX_VALUE).addComponent(panel_3,
+								GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addContainerGap()));
+		gl_panel_1
+				.setVerticalGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
 						.addGroup(gl_panel_1.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(CheckBoxCiclos)
-							.addGap(18)
-							.addComponent(lblNewLabel_1_1, GroupLayout.PREFERRED_SIZE, 153, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-							.addComponent(comboBox_1_1, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(N_Ciclos, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
-							.addContainerGap())
-				);
-				gl_panel_1.setVerticalGroup(
-					gl_panel_1.createParallelGroup(Alignment.TRAILING)
-						.addGroup(gl_panel_1.createSequentialGroup()
-							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_panel_1.createSequentialGroup()
-									.addGap(21)
-									.addComponent(CheckBoxCiclos))
-								.addGroup(gl_panel_1.createSequentialGroup()
-									.addContainerGap()
-									.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-										.addComponent(lblNewLabel_1_1, GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
-										.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-											.addComponent(comboBox_1_1, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
-											.addComponent(N_Ciclos, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))))
-							.addContainerGap())
-				);
-				panel_1.setLayout(gl_panel_1);
-		
-				
-				CheckBoxClasses.setBackground(Color.WHITE);
-				
-						JLabel lblNmeroDeClasses = new JLabel("N\u00FAmero de classes");
-						lblNmeroDeClasses.setFont(new Font("Tahoma", Font.PLAIN, 20));
-				
-						N_Classes = new JTextField();
-						N_Classes_Regras = N_Classes.getText();
-						N_Classes.setFont(new Font("Tahoma", Font.PLAIN, 20));
-						N_Classes.setColumns(10);
-				
-				JComboBox comboBox_1 = new JComboBox();
-				comboBox_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-				comboBox_1.setModel(new DefaultComboBoxModel(new String[] {">", "<"}));
-				GroupLayout gl_panel = new GroupLayout(panel);
-				gl_panel.setHorizontalGroup(
-					gl_panel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(CheckBoxClasses)
-							.addGap(18)
-							.addComponent(lblNmeroDeClasses)
-							.addPreferredGap(ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-							.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(N_Classes, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
-							.addContainerGap())
-				);
-				gl_panel.setVerticalGroup(
-					gl_panel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
-								.addGroup(Alignment.LEADING, gl_panel.createSequentialGroup()
-									.addContainerGap()
-									.addComponent(comboBox_1, GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE))
-								.addGroup(Alignment.LEADING, gl_panel.createSequentialGroup()
-									.addContainerGap()
-									.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-										.addComponent(lblNmeroDeClasses, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
-										.addComponent(N_Classes, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-								.addGroup(Alignment.LEADING, gl_panel.createSequentialGroup()
-									.addGap(21)
-									.addComponent(CheckBoxClasses)))
-							.addContainerGap())
-				);
-				panel.setLayout(gl_panel);
+								.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+										.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+												.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
+														.addComponent(ComboBoxMetricas, GroupLayout.PREFERRED_SIZE, 33,
+																GroupLayout.PREFERRED_SIZE)
+														.addContainerGap())
+												.addComponent(panel_3, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE,
+														GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+										.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
+												.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
+														.addComponent(Limite, GroupLayout.PREFERRED_SIZE,
+																GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+														.addComponent(comboBoxBigSmall, GroupLayout.PREFERRED_SIZE,
+																GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+												.addContainerGap()))));
+		panel_1.setLayout(gl_panel_1);
 		getContentPane().setLayout(groupLayout);
 	}
 }

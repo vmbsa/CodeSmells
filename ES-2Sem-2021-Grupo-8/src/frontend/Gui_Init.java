@@ -33,6 +33,7 @@ public class Gui_Init {
 
 	private JLabel error_message = new JLabel("");
 	private JavaFilesHandler handler;
+	private String excel ;
 
 	public Gui_Init() {
 		initialize();
@@ -101,7 +102,7 @@ public class Gui_Init {
 					int returnVal = fc.showOpenDialog(fc);
 					if (returnVal == JFileChooser.APPROVE_OPTION) {
 						File file = fc.getSelectedFile();
-						String excel = file.getAbsolutePath() + "\\" + handler.getProjectName() + "_metrics.xlsx";
+						excel = file.getAbsolutePath() + "\\" + handler.getProjectName() + "_metrics.xlsx";
 						Excel_Helper excel_helper = new Excel_Helper(handler, excel);
 						excel_helper.writeExcel();
 						Gui_Metricas gui_metrics = new Gui_Metricas(excel);
@@ -123,8 +124,8 @@ public class Gui_Init {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				// Gui_Regras gui_regras = new Gui_Regras();
-				// gui_regras.setVisible(true);
+				 Gui_Regras gui_regras = new Gui_Regras(excel);
+				 gui_regras.setVisible(true);
 			}
 		});
 		btnNewButton_1_1.setBorder(null);
