@@ -36,5 +36,54 @@ public class JavaMethod {
 		}
 		return total;
 	}
+	
+	public boolean is_long_method(String data) {
+		boolean bol = false;
+		String[] data2 = data.split(" ");
+		for(int i = 0; i<data2.length; i++) {
+			if(data2[i] == "LOC_method") {
+				int loc = this.getLOCMethod();
+				int value = Integer.parseInt(data2[i+2]);
+				if(data2[i+1] == ">") {
+					if(loc > value) {
+						bol = true;
+					}else{
+						return false;
+					}
+				}else {
+					if(loc < value) {
+						bol = true;
+					}else{
+						return false;
+					}
+				}
+			}else if(data2[i] == "CYCLO_method") {
+				int loc = this.getCYCLO_method();
+				int value = Integer.parseInt(data2[i+2]);
+				if(data2[i+1] == ">") {
+					if(loc > value) {
+						bol = true;
+					}else{
+						return false;
+					}
+				}else {
+					if(loc < value) {
+						bol = true;
+					}else{
+						return false;
+					}
+				}
+			}
+		}
+		return bol;
+	}
 
+	public boolean falso_positivo(String data) {
+		boolean fp = false;
+		if(this.is_long_method(data) == false) {
+			fp = true;
+		}
+		return fp;
+	}
+	
 }
