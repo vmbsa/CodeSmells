@@ -11,6 +11,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
 import javax.swing.DefaultComboBoxModel;
@@ -45,6 +47,8 @@ public class Gui_Regras extends JFrame {
 	private String excel_file_path;
 	private JTextArea TextInputVars;
 	private String rules = "";
+	private ArrayList<String> ArrayMethods = new ArrayList<String>();
+
 	
 
 	public Gui_Regras(String excel_file_path) {
@@ -121,6 +125,26 @@ public class Gui_Regras extends JFrame {
 				repaint();
 			}
 		});
+		
+		File dir = new File("Regras");
+		ArrayMethods.add("isLongMethod");
+		ArrayMethods.add("isGodClass");
+		 File[] files = dir.listFiles();
+		    for (File file : files) {
+		    	String a = file.getName();
+		    	String splited = a.split("\\.")[0];
+		    	System.out.println(splited);
+		    	ArrayMethods.add(splited);
+		    }
+		    
+		String[] String_Methods = new String[ArrayMethods.size()];
+		for (int i = 0; i < ArrayMethods.size(); i++) {
+			String_Methods[i]=ArrayMethods.get(i);
+		}
+		JComboBox ChecboxCodeSmell = new JComboBox();
+
+		ChecboxCodeSmell.setModel(new DefaultComboBoxModel(String_Methods));
+		
 
 		JButton btnNewButton_1_1 = new JButton("Go!");
 		btnNewButton_1_1.addMouseListener(new MouseAdapter() {
@@ -162,18 +186,18 @@ public class Gui_Regras extends JFrame {
 		
 		JComboBox ComboBoxMetricas = new JComboBox();
 
-		JComboBox ChecboxCodeSmell = new JComboBox();
-
-		ChecboxCodeSmell.setModel(new DefaultComboBoxModel(new String[] { "IsLongMethod", "isGodClass" }));
+		
 		ComboBoxMetricas.setModel(new DefaultComboBoxModel(new String[] { "LOC_Class", "WMC_Class", "NOM_class" }));
 
 		ChecboxCodeSmell.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (ChecboxCodeSmell.getSelectedItem().toString() == ("IsLongMethod")) {
+				if (ChecboxCodeSmell.getSelectedItem().toString() == ("isLongMethod")) {
 					ComboBoxMetricas
 							.setModel(new DefaultComboBoxModel(new String[] { "LOC_Class", "WMC_Class", "NOM_class" }));
-				} else {
+				} else if(ChecboxCodeSmell.getSelectedItem().toString() == ("isGodClass")) {
 					ComboBoxMetricas.setModel(new DefaultComboBoxModel(new String[] { "LOC_Method", "CYCLO_Method" }));
+				}else {
+					ComboBoxMetricas.setModel(new DefaultComboBoxModel(new String[] { "LOC_Method", "CYCLO_Method", "LOC_Class", "WMC_Class", "NOM_class"  }));
 				}
 			}
 		});
@@ -214,48 +238,64 @@ public class Gui_Regras extends JFrame {
 				TextInputVars.setText(rules);
 			}
 		});
+		
+		JButton btnVisualizadorRegras = new JButton("Visualizador Regras");
+		btnVisualizadorRegras.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnVisualizadorRegras.setBackground(SystemColor.textHighlight);
 
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
-		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout
-				.createSequentialGroup().addGap(72)
-				.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(336)
+					.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 221, Short.MAX_VALUE)
+					.addComponent(ChecboxCodeSmell, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
+					.addGap(34))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(33)
+					.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 805, Short.MAX_VALUE)
+					.addContainerGap())
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addGap(72)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addComponent(TextInputVars, GroupLayout.PREFERRED_SIZE, 390, GroupLayout.PREFERRED_SIZE)
 						.addGroup(groupLayout.createSequentialGroup()
-								.addComponent(Button_Adicionar, GroupLayout.PREFERRED_SIZE, 192,
-										GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.RELATED).addComponent(Button_Remover,
-										GroupLayout.PREFERRED_SIZE, 192, GroupLayout.PREFERRED_SIZE)))
-				.addPreferredGap(ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
-				.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(btnNewButton, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(btnNewButton_1, GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE).addComponent(
-								btnNewButton_1_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-				.addGap(35))
-				.addGroup(groupLayout.createSequentialGroup().addGap(336)
-						.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED, 221, Short.MAX_VALUE)
-						.addComponent(ChecboxCodeSmell, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
-						.addGap(34))
-				.addGroup(groupLayout.createSequentialGroup().addGap(33)
-						.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 805, Short.MAX_VALUE).addContainerGap()));
-		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.TRAILING).addGroup(groupLayout
-				.createSequentialGroup().addGap(29)
-				.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+							.addComponent(Button_Adicionar, GroupLayout.PREFERRED_SIZE, 192, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(Button_Remover, GroupLayout.PREFERRED_SIZE, 192, GroupLayout.PREFERRED_SIZE)))
+					.addPreferredGap(ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
+						.addComponent(btnVisualizadorRegras, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(btnNewButton, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(btnNewButton_1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
+						.addComponent(btnNewButton_1_1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addGap(35))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(29)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
 						.addComponent(ChecboxCodeSmell, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE))
-				.addGap(38)
-				.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-				.addPreferredGap(ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
-				.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(btnNewButton)
-						.addComponent(TextInputVars, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE))
-				.addPreferredGap(ComponentPlacement.UNRELATED)
-				.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(btnNewButton_1)
+					.addGap(38)
+					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+					.addComponent(btnVisualizadorRegras, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(TextInputVars, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnNewButton))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnNewButton_1)
 						.addComponent(Button_Remover, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
 						.addComponent(Button_Adicionar, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE))
-				.addPreferredGap(ComponentPlacement.RELATED)
-				.addComponent(btnNewButton_1_1, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
-				.addGap(47)));
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnNewButton_1_1, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
+					.addGap(47))
+		);
 
 		JPanel panel_3 = new JPanel();
 		panel_3.setBackground(SystemColor.text);
