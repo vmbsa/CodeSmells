@@ -24,6 +24,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.CompoundBorder;
@@ -38,10 +39,13 @@ public class Gui_Regras extends JFrame {
 	private String Operator = "";
 	private String Operator2 = "";
 	private File file;
+	private JTextField regra_nome;
+	private JLabel label;
 
 	private String excel_file_path;
-	private JTextField TextInputVars;
+	private JTextArea TextInputVars;
 	private String rules = "";
+	
 
 	public Gui_Regras(String excel_file_path) {
 		this.excel_file_path = excel_file_path;
@@ -60,25 +64,6 @@ public class Gui_Regras extends JFrame {
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				N_Classes_Regras = Limite.getText();
-				N_Ciclos_Regras = N_Ciclos.getText();
-				N_Metodos_Regras = N_Metodos.getText();
-				if (!CheckBoxClasses.isSelected())
-					N_Classes_Regras = "_";
-				if (!CheckBoxCiclos.isSelected())
-					N_Ciclos_Regras = "_";
-				if (!CheckBoxMetodos.isSelected())
-					N_Metodos_Regras = "_";
-				if (!CheckBoxOperadores.isSelected())
-					Operator = "_";
-				if (!CheckBoxOperadores_2.isSelected())
-					Operator2 = "_";
-				Operator2 = comboBox_2.getSelectedItem().toString();
-				Operator = comboBox.getSelectedItem().toString();
-				System.out.println(Operator);
-				System.out.println(Operator2);
-				String Regra = N_Classes_Regras + ":" + Operator + ":" + N_Ciclos_Regras + ":" + Operator2 + ":"
-						+ N_Metodos_Regras;
 				String filename = JOptionPane.showInputDialog("File Name:");
 				try {
 					File myObj = new File("Regras/" + filename + ".txt");
@@ -87,7 +72,7 @@ public class Gui_Regras extends JFrame {
 						System.out.println("File already exists.");
 					}
 					FileWriter myWriter = new FileWriter("Regras/" + filename + ".txt");
-					myWriter.write(Regra);
+					myWriter.write(rules);
 					myWriter.close();
 				} catch (IOException e1) {
 					System.out.println("An error occurred.");
@@ -119,51 +104,16 @@ public class Gui_Regras extends JFrame {
 				}
 				try {
 					Scanner myReader = new Scanner(file);
+					String data=null;
 					while (myReader.hasNextLine()) {
-						String data = myReader.nextLine();
+						data = myReader.nextLine();
 						System.out.println(data);
-						String[] parser = data.split(":");
-						if (!(parser[0].equals("_"))) {
-							CheckBoxClasses.setSelected(true);
-							N_Classes_Regras = parser[0];
-							Limite.setText(parser[0]);
-						} else {
-							N_Classes_Regras = "0";
-							Limite.setText("0");
-
-						}
-
-						if (!(parser[2].equals("_"))) {
-							CheckBoxCiclos.setSelected(true);
-							N_Ciclos_Regras = parser[2];
-							N_Ciclos.setText(parser[2]);
-						} else {
-							N_Ciclos_Regras = "0";
-							N_Ciclos.setText("0");
-
-						}
-
-						if (!(parser[4].equals("_"))) {
-							CheckBoxMetodos.setSelected(true);
-							N_Metodos_Regras = parser[4];
-							N_Metodos.setText(parser[4]);
-						} else {
-							N_Metodos_Regras = "0";
-							N_Metodos.setText("0");
-
-						}
-						if (!(parser[1].equals("_"))) {
-							CheckBoxOperadores.setSelected(true);
-							comboBox.setSelectedItem(parser[1]);
-							Operator = parser[1];
-						}
-						if (!(parser[3].equals("_"))) {
-							CheckBoxOperadores_2.setSelected(true);
-							comboBox_2.setSelectedItem(parser[3]);
-							Operator2 = parser[3];
-						}
 					}
+					TextInputVars.setText("Regra: "+ file.getName().split(".txt")[0]);
+					TextInputVars.append("\n" + data);
+					
 					myReader.close();
+					
 				} catch (FileNotFoundException e1) {
 					System.out.println("An error occurred.");
 					e1.printStackTrace();
@@ -188,7 +138,7 @@ public class Gui_Regras extends JFrame {
 		panel_1.setBackground(SystemColor.text);
 		panel_1.setBorder(new CompoundBorder());
 
-		TextInputVars = new JTextField();
+		TextInputVars = new JTextArea();
 		TextInputVars.setEditable(false);
 		TextInputVars.setColumns(10);
 
@@ -258,7 +208,7 @@ public class Gui_Regras extends JFrame {
 							+ " ";
 				} else {
 					rules = rules + ComboBoxMetricas.getSelectedItem().toString()
-							+ comboBoxBigSmall.getSelectedItem().toString() + Limite.getText().toString() + Operador
+							+ comboBoxBigSmall.getSelectedItem().toString() + Limite.getText().toString() + " "+  Operador
 							+ " ";
 				}
 				TextInputVars.setText(rules);
