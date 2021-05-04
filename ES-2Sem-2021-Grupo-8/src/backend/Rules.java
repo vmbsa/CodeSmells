@@ -6,22 +6,22 @@ import java.util.Scanner;
 
 
 
-public class Rule {
+public class Rules {
 
+
+	private static File FOLDERNAME;
 	
-	private String name;
 	
-	
-	public Rule(String name) {
-		this.name=name;
+	public Rules() {
+		
 	}
 
 	
 	
-	public String getRule(File filename) {
+	private void loadRule() {
 		String data=null;
-		try {
-			Scanner myReader= new Scanner(filename);
+			try {
+			Scanner myReader= new Scanner(FOLDERNAME);
 			while(myReader.hasNextLine()) {
 				data=myReader.nextLine();
 			}
@@ -32,12 +32,6 @@ public class Rule {
 			System.out.println("An error Occurred");
 			e1.printStackTrace();
 		}
-		return data;
 	}
 	
-	
-	public String getName() {
-		return name;
-	}
-
 }
