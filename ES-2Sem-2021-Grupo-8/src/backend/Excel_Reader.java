@@ -16,15 +16,15 @@ public class Excel_Reader {
 			boolean is_Long_Method) {
 		super();
 		this.id = id;
-		MethodID = methodID;
-		Exc_package = exc_package;
-		Exc_class = exc_class;
+		this.MethodID = methodID;
+		this.Exc_package = exc_package;
+		this.Exc_class = exc_class;
 		this.method = method;
-		NOM_class = nOM_class;
-		LOC_class = lOC_class;
-		WMC_class = wMC_class;
-		LOC_method = lOC_method;
-		CYCLO_method = cYCLO_method;
+		this.NOM_class = nOM_class;
+		this.LOC_class = lOC_class;
+		this.WMC_class = wMC_class;
+		this.LOC_method = lOC_method;
+		this.CYCLO_method = cYCLO_method;
 		this.is_God_Class = is_God_Class;
 		this.is_Long_Method = is_Long_Method;
 	}
