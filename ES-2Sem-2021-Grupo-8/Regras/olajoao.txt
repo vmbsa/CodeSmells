@@ -1,0 +1,1 @@
+WMC_Class<10 AND NOM_class>10 OR 
