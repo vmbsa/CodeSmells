@@ -67,7 +67,7 @@ public class Gui_CriarRegra extends JFrame {
 		for (File file : files) {
 			String a = file.getName();
 			String splited = a.split("\\.")[0];
-			System.out.println(splited);
+			//System.out.println(splited);
 			ArrayMethods.add(splited);
 		}
 
