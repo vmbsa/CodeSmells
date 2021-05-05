@@ -3,6 +3,8 @@ import java.io.File;
 
 public class ClassOfDefaultPackage {
 	
+	// this is a comment and shouldn't be counted to the LOCClass metric
+	
 	private File f;
 	
 	public void getFile() {
