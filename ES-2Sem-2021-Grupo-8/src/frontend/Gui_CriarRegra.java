@@ -38,6 +38,7 @@ public class Gui_CriarRegra extends JFrame {
 	private JTextField regra_nome;
 	private JLabel label;
 
+	private String filename="";
 	private String excel_file_path;
 	private String rules = "";
 	private ArrayList<String> ArrayMethods = new ArrayList<String>();
@@ -50,8 +51,10 @@ public class Gui_CriarRegra extends JFrame {
 	initialize();
 	}
 
-	
-	
+	public String GetRule() {
+		return rules;
+	}
+
 	public void initialize() {
 		setBounds(100, 100, 864, 468);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -79,7 +82,7 @@ public class Gui_CriarRegra extends JFrame {
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(SystemColor.text);
 		panel_1.setBorder(new CompoundBorder());
-
+		
 		JButton Button_Adicionar = new JButton("Adicionar");
 		Button_Adicionar.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		Button_Adicionar.setBackground(SystemColor.textHighlight);
@@ -87,7 +90,7 @@ public class Gui_CriarRegra extends JFrame {
 		@Override
 		public void mouseClicked(MouseEvent e) {
 		
-			String filename=textField.getText();
+			filename=textField.getText();
 			
 			try {
 				File myObj = new File("Regras/" + filename + ".txt");
@@ -115,8 +118,7 @@ public class Gui_CriarRegra extends JFrame {
 
 		Button_Remover.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			
-				;
+				
 			}
 		});
 
@@ -290,5 +292,8 @@ public class Gui_CriarRegra extends JFrame {
 		);
 		panel_1.setLayout(gl_panel_1);
 		getContentPane().setLayout(groupLayout);
+	}
+	public String String_Constructor() {
+		return " " + "Regra: " +filename + " " + GetRule();
 	}
 }

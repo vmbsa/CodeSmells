@@ -26,12 +26,12 @@ public class Gui_Regras extends JFrame {
 
 	private String excel_file_path;
 	private JTextArea TextInputVars;
-	private String rules = "";
 	private ArrayList<String> ArrayMethods = new ArrayList<String>();
 	public Gui_CriarRegra cria_Regra = new Gui_CriarRegra();
 
 	ArrayList<String> arr = new ArrayList<String>();
 	JList list = new JList();
+	
 
 	public Gui_Regras(String excel_file_path) {
 		this.excel_file_path = excel_file_path;
@@ -143,8 +143,7 @@ public class Gui_Regras extends JFrame {
 				
 //				Carrega_Regra(file.getName());
 				
-//					String rule=
-					TextInputVars.append("Regra: "+ file.getName().split(".txt")[0]);
+					TextInputVars.append(cria_Regra.String_Constructor()+ " \n " +"Regra: "+ file.getName().split(".txt")[0]);
 					TextInputVars.append("\n");
 //					
 					 
