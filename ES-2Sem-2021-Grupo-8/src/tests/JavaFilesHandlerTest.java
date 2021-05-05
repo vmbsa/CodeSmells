@@ -7,6 +7,12 @@ import org.junit.runner.RunWith;
 import backend.JavaFilesHandler;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Test Cases that validate the creation and usage of instances of a JavaFilesHandler object
+ * 
+ * @author ES-2Sem-2021-Grupo-8
+ *
+ */
 @RunWith(JUnitPlatform.class)
 @SelectClasses({ JavaFilesHandler.class })
 class JavaFilesHandlerTest {
