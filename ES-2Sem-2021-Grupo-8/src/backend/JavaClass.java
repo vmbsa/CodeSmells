@@ -15,7 +15,7 @@ public class JavaClass extends VoidVisitorAdapter<Void> {
 
 	private String name;
 	private File file;
-	private List<JavaMethod> methods_list = new ArrayList<JavaMethod>();
+	private static List<JavaMethod> methods_list = new ArrayList<JavaMethod>();
 	private int size;
 
 	public JavaClass(String name, File file) {
@@ -30,6 +30,9 @@ public class JavaClass extends VoidVisitorAdapter<Void> {
 
 	public List<JavaMethod> getMethods_list() {
 		return methods_list;
+	}
+	public static int getNumberOfMethods(){
+		return methods_list.size();
 	}
 
 	public String getName() {

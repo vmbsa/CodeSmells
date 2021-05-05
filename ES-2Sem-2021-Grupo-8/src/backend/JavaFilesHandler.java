@@ -6,8 +6,8 @@ import java.util.List;
 
 public class JavaFilesHandler {
 
-	private List<JavaPackage> package_list = new ArrayList<JavaPackage>();
-	private int numberOfPackages = 0;
+	private static List<JavaPackage> package_list = new ArrayList<JavaPackage>();
+	private static int numberOfPackages = 0;
 	private File src;
 	private String project_name;
 
@@ -47,11 +47,11 @@ public class JavaFilesHandler {
 		}
 	}
 
-	public int getNumberOfPackages() {
+	public static int getNumberOfPackages() {
 		return numberOfPackages;
 	}
 
-	public int countTotalOfClasses() {
+	public static int countTotalOfClasses() {
 		int total = 0;
 		for (int i = 0; i < package_list.size(); i++) {
 			JavaPackage p = package_list.get(i);
@@ -60,7 +60,7 @@ public class JavaFilesHandler {
 		return total;
 	}
 	
-	public int countTotalOfCodeLines() {
+	public static int countTotalOfCodeLines() {
 		int total = 0;
 		for (int i = 0; i < package_list.size(); i++) {
 			JavaPackage p = package_list.get(i);

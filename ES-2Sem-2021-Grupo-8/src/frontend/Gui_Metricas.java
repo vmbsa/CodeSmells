@@ -1,18 +1,12 @@
 package frontend;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.SystemColor;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JButton;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -22,6 +16,9 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.table.DefaultTableModel;
 
 import backend.Excel_Helper;
+import backend.JavaFilesHandler;
+import backend.JavaClass;
+
 
 public class Gui_Metricas extends JFrame {
 	
@@ -111,17 +108,17 @@ public class Gui_Metricas extends JFrame {
 				JLabel lblNmeroTotalDe = new JLabel("N\u00FAmero total de linhas de c\u00F3digo");
 				lblNmeroTotalDe.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
-				JLabel lblNewLabel_1_3 = new JLabel("0");
-				lblNewLabel_1_3.setFont(new Font("Tahoma", Font.PLAIN, 20));
+				JLabel Label_Number_line_codes = new JLabel(String.valueOf(JavaFilesHandler.countTotalOfCodeLines()));
+				Label_Number_line_codes.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
-				JLabel lblNewLabel_1_2 = new JLabel("0");
-				lblNewLabel_1_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
+				JLabel Label_Number_Methods = new JLabel(String.valueOf(JavaClass.getNumberOfMethods()));
+				Label_Number_Methods.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
-				JLabel lblNewLabel_1_1 = new JLabel("0");
-				lblNewLabel_1_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		
-				JLabel lblNewLabel_1 = new JLabel("0");
-				lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
+				JLabel Label_Number_Classes = new JLabel(String.valueOf(JavaFilesHandler.countTotalOfClasses()));
+				Label_Number_Classes.setFont(new Font("Tahoma", Font.PLAIN, 20));
+				
+				JLabel Label_Number_Packages = new JLabel(String.valueOf(JavaFilesHandler.getNumberOfPackages())) ;
+				Label_Number_Packages.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
@@ -134,10 +131,10 @@ public class Gui_Metricas extends JFrame {
 						.addComponent(lblNmeroTotalDe, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 330, GroupLayout.PREFERRED_SIZE))
 					.addGap(73)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblNewLabel_1_1, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblNewLabel_1_2, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblNewLabel_1_3, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE))
+						.addComponent(Label_Number_Classes, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE)
+						.addComponent(Label_Number_Methods, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE)
+						.addComponent(Label_Number_line_codes, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE)
+						.addComponent(Label_Number_Packages, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE))
 					.addGap(75))
 		);
 		gl_panel.setVerticalGroup(
@@ -153,17 +150,17 @@ public class Gui_Metricas extends JFrame {
 							.addPreferredGap(ComponentPlacement.UNRELATED))
 						.addGroup(gl_panel.createSequentialGroup()
 							.addContainerGap()
-							.addComponent(lblNewLabel_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(Label_Number_Packages, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(lblNewLabel_1_1, GroupLayout.PREFERRED_SIZE, 54, GroupLayout.PREFERRED_SIZE)
+							.addComponent(Label_Number_Classes, GroupLayout.PREFERRED_SIZE, 54, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(lblNewLabel_1_2, GroupLayout.PREFERRED_SIZE, 54, GroupLayout.PREFERRED_SIZE)
+							.addComponent(Label_Number_Methods, GroupLayout.PREFERRED_SIZE, 54, GroupLayout.PREFERRED_SIZE)
 							.addGap(3)))
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblNmeroTotalDe, GroupLayout.PREFERRED_SIZE, 54, GroupLayout.PREFERRED_SIZE)
 						.addGroup(gl_panel.createSequentialGroup()
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(lblNewLabel_1_3, GroupLayout.PREFERRED_SIZE, 54, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(Label_Number_line_codes, GroupLayout.PREFERRED_SIZE, 54, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap(12, Short.MAX_VALUE))
 		);
 		panel.setLayout(gl_panel);
