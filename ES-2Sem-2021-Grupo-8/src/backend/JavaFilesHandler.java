@@ -35,7 +35,7 @@ public class JavaFilesHandler {
 	}
 
 	public void searchInSrc(File folder) {
-		for (final File f : folder.listFiles()) {
+		for (File f : folder.listFiles()) {
 			if (f.isFile()) {
 				if (f.getName().matches(".*\\.java")) {
 					JavaPackage p = new JavaPackage("default", folder);
