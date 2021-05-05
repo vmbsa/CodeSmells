@@ -63,7 +63,6 @@ public class JavaClass extends VoidVisitorAdapter<Void> {
 		return size;
 	}
 	
-
 	public int getNOMClass() {
 		return methods_list.size();
 	}

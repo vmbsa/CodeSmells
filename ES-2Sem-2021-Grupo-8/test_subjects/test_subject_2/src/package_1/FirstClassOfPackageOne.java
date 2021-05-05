@@ -6,7 +6,7 @@
  * @author ES-2Sem-2021-Grupo-8
  *
  */
-public class ClassOfPackageOne {
+public class FirstClassOfPackageOne {
 	
 	public int sum(int a, int b) {
 		return a + b;
