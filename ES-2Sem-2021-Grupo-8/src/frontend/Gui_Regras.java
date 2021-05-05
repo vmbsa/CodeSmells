@@ -29,7 +29,7 @@ public class Gui_Regras extends JFrame {
 	private File file;
 
 	private String excel_file_path;
-	private JTextArea TextInputVars;
+	private static JTextArea TextInputVars;
 	private String rules = "";
 	private ArrayList<String> ArrayMethods = new ArrayList<String>();
 	public Gui_CriarRegra cria_Regra = new Gui_CriarRegra();
@@ -120,7 +120,7 @@ public class Gui_Regras extends JFrame {
 		JButton btnNewButton_1 = new JButton("Importar Regra");
 		btnNewButton_1.setBorder(null);
 		btnNewButton_1.setBackground(SystemColor.textHighlight);
-		btnNewButton_1.setBounds(537, 235, 188, 33);
+		btnNewButton_1.setBounds(537, 220, 188, 33);
 		getContentPane().add(btnNewButton_1);
 
 		btnNewButton_1_1.addMouseListener(new MouseAdapter() {
@@ -183,7 +183,7 @@ public class Gui_Regras extends JFrame {
 			}
 		});
 	}
-	public void addToPane(String s) {
+	public static void addToPane(String s) {
 		TextInputVars.append(s);
 	}
 
