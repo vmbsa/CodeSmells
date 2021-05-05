@@ -33,8 +33,6 @@ public class Gui_Regras extends JFrame {
 	private String rules = "";
 	private ArrayList<String> ArrayMethods = new ArrayList<String>();
 	public Gui_CriarRegra cria_Regra = new Gui_CriarRegra();
-
-	ArrayList<String> arr = new ArrayList<String>();
 	JList list = new JList();
 
 	public Gui_Regras(String excel_file_path) {
@@ -143,7 +141,7 @@ public class Gui_Regras extends JFrame {
 					file = fc.getSelectedFile();
 					System.out.print("Opening: " + file.getName() + ".");
 				}
-				
+				 
 				
 //				Carrega_Regra(file.getName());
 				
@@ -151,7 +149,7 @@ public class Gui_Regras extends JFrame {
 					TextInputVars.append("Regra: "+ file.getName().split(".txt")[0]);
 					TextInputVars.append("\n");
 //					
-					 
+		 			 
 				
 				repaint();
 			}
@@ -159,9 +157,7 @@ public class Gui_Regras extends JFrame {
 		btnVisualizadorRegras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String data = "";
-				/*for (int i = 0; i < ArrayMethods.size(); i++) {
-					data = data + ArrayMethods.get(i) + "\n";
-				}*/
+				 
 				File[] files = dir.listFiles();
 				String body = "";
 				for (File file : files) {
@@ -186,6 +182,9 @@ public class Gui_Regras extends JFrame {
 				frame.setVisible(true);
 			}
 		});
+	}
+	public void addToPane(String s) {
+		TextInputVars.append(s);
 	}
 
 }

@@ -1,4 +1,4 @@
- package frontend;
+package frontend;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -113,7 +113,7 @@ public class Gui_Init {
 					error_message.setForeground(Color.RED);
 					txtpnAsdsa.setText("");
 				}
-
+ 
 			}
 		});
 		btnNewButton_1.setBackground(SystemColor.textHighlight);

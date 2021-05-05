@@ -40,6 +40,7 @@ public class Gui_CriarRegra extends JFrame {
 
 	private String excel_file_path;
 	private String rules = "";
+	private String filename="";
 	private ArrayList<String> ArrayMethods = new ArrayList<String>();
 	private JTextField textField;
 	private JTextField textField_1;
@@ -50,7 +51,6 @@ public class Gui_CriarRegra extends JFrame {
 	initialize();
 	}
 
-	
 	
 	public void initialize() {
 		setBounds(100, 100, 864, 468);
@@ -87,7 +87,7 @@ public class Gui_CriarRegra extends JFrame {
 		@Override
 		public void mouseClicked(MouseEvent e) {
 		
-			String filename=textField.getText();
+			 filename=textField.getText();
 			
 			try {
 				File myObj = new File("Regras/" + filename + ".txt");
@@ -98,6 +98,7 @@ public class Gui_CriarRegra extends JFrame {
 				FileWriter myWriter = new FileWriter("Regras/" + filename + ".txt");
 				myWriter.write(rules);
 				myWriter.close();
+				
 
 			} catch (IOException e1) {
 				System.out.println("An error occurred.");
@@ -105,6 +106,10 @@ public class Gui_CriarRegra extends JFrame {
 			}
 			System.out.println("Nova regra adicionada!");
 		}
+		
+		
+		
+		
 		});
 		
 
@@ -116,7 +121,7 @@ public class Gui_CriarRegra extends JFrame {
 		Button_Remover.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			
-				;
+				
 			}
 		});
 
@@ -167,7 +172,9 @@ public class Gui_CriarRegra extends JFrame {
 				
 				textField_1.setText(rules);
 				
+				
 			}
+			
 			
 		});
 		
@@ -178,10 +185,12 @@ public class Gui_CriarRegra extends JFrame {
 			btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
+				RuleIntoJP();
 				dispose();
+				
+				
 			
-			}
+			} 
 			});
 
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
@@ -291,4 +300,9 @@ public class Gui_CriarRegra extends JFrame {
 		panel_1.setLayout(gl_panel_1);
 		getContentPane().setLayout(groupLayout);
 	}
+	 public void RuleIntoJP() {
+		 gr.addToPane(filename + " "+ rules);
+	 }
+	
+	
 }
