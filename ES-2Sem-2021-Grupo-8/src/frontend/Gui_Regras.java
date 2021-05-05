@@ -31,6 +31,9 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.CompoundBorder;
+
+import org.checkerframework.checker.units.qual.s;
+
 import javax.swing.JList;
 
 public class Gui_Regras extends JFrame {
@@ -47,31 +50,31 @@ public class Gui_Regras extends JFrame {
 
 	private String excel_file_path;
 	private JTextArea TextInputVars;
-	private String rules = "";
 	private ArrayList<String> ArrayMethods = new ArrayList<String>();
 	public Gui_CriarRegra cria_Regra= new Gui_CriarRegra();
-	
+	public String str;
 	ArrayList<String> arr = new ArrayList<String>();
 	JList list = new JList();
+	
 
 	public Gui_Regras(String excel_file_path) {
 		this.excel_file_path = excel_file_path;
 		initialize();
 	}
 
-	public void Carrega_Regra(String filename) {
-		File folder= new File("/Users/joaosantos/git/ES-2Sem-2021-Grupo-8/ES-2Sem-2021-Grupo-8/Regras");
-		File[] files= folder.listFiles();
-		for(File f : files) {
-			if(filename.equals(f.getName())) {
-				TextInputVars.setText(filename);
-			}
-		}
-		
-		
-	}
+//	public void Carrega_Regra(String filename) {
+//		File folder= new File("/Users/joaosantos/git/ES-2Sem-2021-Grupo-8/ES-2Sem-2021-Grupo-8/Regras");
+//		File[] files= folder.listFiles();
+//		for(File f : files) {
+//			if(filename.equals(f.getName())) {
+//				TextInputVars.setText(filename);
+//			}
+//		}
+//		
+//		
+//	}
 	
-	private void initialize() {
+		private void initialize() {
 		setBounds(100, 100, 864, 468);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setBackground(Color.WHITE);
@@ -111,8 +114,7 @@ public class Gui_Regras extends JFrame {
 				
 //				Carrega_Regra(file.getName());
 				
-//					String rule=
-					TextInputVars.append("Regra: "+ file.getName().split(".txt")[0]);
+					TextInputVars.append(cria_Regra.String_Constructor()+ " \n " +"Regra: "+ file.getName().split(".txt")[0]);
 					TextInputVars.append("\n");
 //					
 					 
@@ -160,8 +162,38 @@ public class Gui_Regras extends JFrame {
 		btnVisualizadorRegras.setBounds(704, 288, 154, 29);
 		btnVisualizadorRegras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 			}
 		});
+		str=null;
+		btnVisualizadorRegras.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				File folder= new File("/Users/joaosantos/git/ES-2Sem-2021-Grupo-8/ES-2Sem-2021-Grupo-8/Regras");
+				File[] files= folder.listFiles();
+				for(File f : files) {
+					try {
+						 
+						Scanner s= new Scanner(f);
+						while (s.hasNextLine()) {
+							str=s.nextLine();
+						TextInputVars.append(f.getName()+" "+ str+"\n");
+						System.out.println(str);
+						}
+						
+						
+						
+					} catch (FileNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+					
+					
+			}
+			}
+		});
+		
 		btnVisualizadorRegras.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnVisualizadorRegras.setBackground(SystemColor.textHighlight);
 		getContentPane().setLayout(null);
