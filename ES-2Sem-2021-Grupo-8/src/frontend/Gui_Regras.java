@@ -13,7 +13,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -32,8 +31,9 @@ public class Gui_Regras extends JFrame {
 	private JTextArea TextInputVars;
 	private String rules = "";
 	private ArrayList<String> ArrayMethods = new ArrayList<String>();
-	public Gui_CriarRegra cria_Regra = new Gui_CriarRegra();
 
+	public Gui_CriarRegra cria_Regra = new Gui_CriarRegra();
+  
 	ArrayList<String> arr = new ArrayList<String>();
 	JList list = new JList();
 
@@ -125,6 +125,7 @@ public class Gui_Regras extends JFrame {
 		btnNewButton_1.setBounds(537, 235, 188, 33);
 		getContentPane().add(btnNewButton_1);
 
+
 		btnNewButton_1_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -156,6 +157,7 @@ public class Gui_Regras extends JFrame {
 				repaint();
 			}
 		});
+
 		btnVisualizadorRegras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String data = "";
