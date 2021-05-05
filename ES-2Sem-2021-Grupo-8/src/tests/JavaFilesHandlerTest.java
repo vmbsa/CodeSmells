@@ -190,7 +190,7 @@ class JavaFilesHandlerTest {
 	@Test
 	void test_12() throws Exception {
 		JavaFilesHandler jfh = new JavaFilesHandler("test_subjects/test_subject_6");
-		assertEquals(jfh.countTotalOfClasses(), 3);
+		assertEquals(jfh.countTotalOfClasses(), 3); 
 	}
 
 
