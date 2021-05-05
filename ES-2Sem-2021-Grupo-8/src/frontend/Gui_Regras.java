@@ -7,7 +7,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -115,7 +119,7 @@ public class Gui_Regras extends JFrame {
 
 		});
 
-		JButton btnNewButton_1 = new JButton("Imporar Regra");
+		JButton btnNewButton_1 = new JButton("Importar Regra");
 		btnNewButton_1.setBorder(null);
 		btnNewButton_1.setBackground(SystemColor.textHighlight);
 		btnNewButton_1.setBounds(537, 235, 188, 33);
@@ -154,10 +158,32 @@ public class Gui_Regras extends JFrame {
 		});
 		btnVisualizadorRegras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				for (int i = 0; i < ArrayMethods.size(); i++) {
-					TextInputVars.append(ArrayMethods.get(i));
-					TextInputVars.append("\n");
+				String data = "";
+				/*for (int i = 0; i < ArrayMethods.size(); i++) {
+					data = data + ArrayMethods.get(i) + "\n";
+				}*/
+				File[] files = dir.listFiles();
+				String body = "";
+				for (File file : files) {
+					try {
+						BufferedReader in = new BufferedReader(new FileReader(file));
+						String line;
+						
+						while((line = in.readLine()) != null){
+						    body+=line;
+						}
+						in.close();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+					data = data + file.getName().split(".txt")[0] + " --> " + body + "\n";
+					body="";
 				}
+				
+				Gui_Historico frame = new Gui_Historico(data);
+				frame.setVisible(true);
 			}
 		});
 	}
