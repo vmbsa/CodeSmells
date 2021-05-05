@@ -21,7 +21,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class Excel_Helper {
 
 	private static String XLSX_FILE_NAME;
-	private ArrayList<String> rows = new ArrayList<String>();
+	private ArrayList<String> rows = new ArrayList<String>(); 
 	
 	private String file_path;
 	private JavaFilesHandler project;;

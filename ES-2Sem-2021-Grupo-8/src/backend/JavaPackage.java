@@ -47,4 +47,8 @@ public class JavaPackage {
 		}
 		return total;
 	}
+	
+	public List<JavaClass> getClass_list() {
+		return class_list;
+	}
 }
