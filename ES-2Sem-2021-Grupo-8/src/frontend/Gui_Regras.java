@@ -28,7 +28,7 @@ public class Gui_Regras extends JFrame {
 	private File file;
 
 	private String excel_file_path;
-	private JTextArea TextInputVars;
+	private static JTextArea TextInputVars;
 	private String rules = "";
 	private ArrayList<String> ArrayMethods = new ArrayList<String>();
 
@@ -188,6 +188,9 @@ public class Gui_Regras extends JFrame {
 				frame.setVisible(true);
 			}
 		});
+	}
+	public static void addToPane(String s) {
+		TextInputVars.append(s);
 	}
 
 }
