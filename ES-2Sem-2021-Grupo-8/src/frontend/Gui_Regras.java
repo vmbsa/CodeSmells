@@ -51,6 +51,8 @@ public class Gui_Regras extends JFrame {
 		this.excel_file_path = excel_file_path;
 		initialize();
 	}
+	
+	
 
 	private void initialize() {
 		setBounds(100, 100, 864, 468);
