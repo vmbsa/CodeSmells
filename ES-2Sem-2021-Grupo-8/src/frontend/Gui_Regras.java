@@ -41,6 +41,8 @@ public class Gui_Regras extends JFrame {
 		this.excel_file_path = excel_file_path;
 		initialize();
 	}
+	
+	
 
 	public void Carrega_Regra(String filename) {
 		File folder = new File("Regras");
