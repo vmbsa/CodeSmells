@@ -15,6 +15,7 @@ import backend.JavaClass;
  * Test Cases that validate the creation and usage of instances of a JavaClass object
  * 
  * @author ES-2Sem-2021-Grupo-8
+ * @version 1.0
  *
  */
 @RunWith(JUnitPlatform.class)
