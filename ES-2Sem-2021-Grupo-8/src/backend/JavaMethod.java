@@ -54,13 +54,15 @@ public class JavaMethod {
 						if(loc > value) {
 							bol = true;
 						}else{
-							bol = false;
+							if(loc <= value) 
+								bol = false;
 						}
-					}else {
+					}else if(data2[i+1] == "<"){
 						if(loc < value) {
 							bol = true;
 						}else{
-							bol = false;
+							if(loc >= value)
+								bol = false;
 						}
 					}
 				}else if(data2[i] == "CYCLO_method") {
@@ -70,13 +72,15 @@ public class JavaMethod {
 						if(loc > value) {
 							bol = true;
 						}else{
-							bol = false;
+							if(loc <= value) 
+								bol = false;
 						}
-					}else {
+					}else if(data2[i+1] == "<"){
 						if(loc < value) {
 							bol = true;
 						}else{
-							bol = false;
+							if(loc >= value)
+								bol = false;
 						}
 					}
 				}
@@ -95,13 +99,15 @@ public class JavaMethod {
 						if(loc > value) {
 							bol = true;
 						}else{
-							return false;
+							if(loc <= value) 
+								return false;
 						}
-					}else {
+					}else if(data2[i+1] == "<"){
 						if(loc < value) {
 							bol = true;
 						}else{
-							return false;
+							if(loc >= value)
+								return false;
 						}
 					}
 				}else if(data2[i] == "CYCLO_method") {
@@ -111,13 +117,15 @@ public class JavaMethod {
 						if(loc > value) {
 							bol = true;
 						}else{
-							return false;
+							if(loc <= value) 
+								return false;
 						}
-					}else {
+					}else if(data2[i+1] == "<"){
 						if(loc < value) {
 							bol = true;
 						}else{
-							return false;
+							if(loc >= value)
+								return false;
 						}
 					}
 				}
