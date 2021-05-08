@@ -7,6 +7,7 @@ public class JavaMethod {
 	private String name;
 	private MethodDeclaration md;
 	private int size;
+	private boolean isLongMethod;
 
 	public JavaMethod(MethodDeclaration md) {
 		this.name = md.getDeclarationAsString();
@@ -22,6 +23,10 @@ public class JavaMethod {
 		size = lines.length;
 		return size;
 	}
+
+	public boolean getIsLongMethod() {
+		return isLongMethod;
+	}
 	
 	public int getCYCLO_method() {
 		String[] cyclos = {"if(","if (", "for(", "for (", "while(", "while (", "do {", "do{", "switch (", "switch("};
@@ -36,6 +41,7 @@ public class JavaMethod {
 		}
 		return total;
 	}
+	
 	
 	public boolean or_long_method(String data) {
 		boolean bol = false;
@@ -174,6 +180,14 @@ public class JavaMethod {
 			fp = true;
 		}
 		return fp;
+	}
+	
+	public boolean verdadeiro_positivo(String data) {
+		boolean vp = false;
+		if (this.is_long_method(data) == true) {
+			vp = true;
+		}
+		return vp;
 	}
 	
 }

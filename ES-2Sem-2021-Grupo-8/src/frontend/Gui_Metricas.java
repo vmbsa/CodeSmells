@@ -49,10 +49,10 @@ public class Gui_Metricas extends JFrame {
 		dtm.addColumn("NOM_class");
 		dtm.addColumn("LOC_class");
 		dtm.addColumn("WMC_class");
+		dtm.addColumn("is_Long_Method");
 		dtm.addColumn("LOC_method");
 		dtm.addColumn("CYCLO_method");
 		dtm.addColumn("is_God_Class");
-		dtm.addColumn("is_Long_Method");
 		for (int a= 1; a<helper.size();a++) {
 			String[] abc = helper.get(a).split("\\|");
 			dtm.addRow(new Object[] {(int) Double.parseDouble(abc[0]),abc[1],abc[2],abc[3],
