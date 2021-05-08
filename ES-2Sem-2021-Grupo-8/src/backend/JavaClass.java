@@ -121,7 +121,7 @@ public class JavaClass extends VoidVisitorAdapter<Void> {
 		return bol;
 	}
 
-	private boolean andGodClass(String data) {
+	public boolean andGodClass(String data) {
 		boolean bol = false;
 		String[] data2 = data.split(" ");
 		for(int i = 0; i<data2.length; i++) {
@@ -131,10 +131,16 @@ public class JavaClass extends VoidVisitorAdapter<Void> {
 				if(data2[i+1] == ">") {
 						if(loc > value) {
 							bol = true;
+						}else{
+							if(loc <= value) 
+								return false;
 						}
-					}else {
+					}else if(data2[i+1] == "<"){
 						if(loc < value) {
 							bol = true;
+						}else{
+							if(loc >= value)
+								return false;
 						}
 					}
 				}else if(data2[i] == "NOM_class") {
@@ -143,10 +149,16 @@ public class JavaClass extends VoidVisitorAdapter<Void> {
 					if(data2[i+1] == ">") {
 						if(loc > value) {
 							bol = true;
+						}else{
+							if(loc <= value) 
+								return false;
 						}
-					}else {
+					}else if(data2[i+1] == "<"){
 						if(loc < value) {
 							bol = true;
+						}else{
+							if(loc >= value)
+								return false;
 						}
 					}
 				}
@@ -154,7 +166,7 @@ public class JavaClass extends VoidVisitorAdapter<Void> {
 		return bol;
 	}
 
-	private boolean orGodClass(String data) {
+	public boolean orGodClass(String data) {
 		boolean bol = false;
 		String[] data2 = data.split(" ");
 		for(int i = 0; i<data2.length; i++) {
@@ -164,10 +176,16 @@ public class JavaClass extends VoidVisitorAdapter<Void> {
 				if(data2[i+1] == ">") {
 						if(loc > value) {
 							bol = true;
+						}else{
+							if(loc <= value) 
+								bol = false;
 						}
-					}else {
+					}else if(data2[i+1] == "<"){
 						if(loc < value) {
 							bol = true;
+						}else{
+							if(loc >= value)
+								bol = false;
 						}
 					}
 				}else if(data2[i] == "NOM_class") {
@@ -176,10 +194,16 @@ public class JavaClass extends VoidVisitorAdapter<Void> {
 					if(data2[i+1] == ">") {
 						if(loc > value) {
 							bol = true;
+						}else{
+							if(loc <= value) 
+								bol = false;
 						}
-					}else {
+					}else if(data2[i+1] == "<"){
 						if(loc < value) {
 							bol = true;
+						}else{
+							if(loc >= value)
+								bol = false;
 						}
 					}
 				}
