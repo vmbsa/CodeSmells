@@ -107,7 +107,7 @@ public class Excel_Helper {
 					Row row = sheet.createRow(methodID);
 					
 					Object[] data = {methodID, p.getName(), c.getName(), m.getName(), c.getNOMClass(), c.getLOCClass(), 
-							c.getWMCClass(), "Por fazer", m.getLOCMethod(), m.getCYCLO_method(), "Por fazer"};
+							c.getWMCClass(), m.getLOCMethod(), m.getCYCLO_method()};
 					
 					int column = 0;
 			        
@@ -127,7 +127,7 @@ public class Excel_Helper {
 	}
 	
 	private void createHeader(XSSFSheet sheet) {
-		String[] headers = {"MethodID", "package", "class", "method", "NOM_class", "LOC_class", "WMC_class", "is_God_Class", "LOC_method", "CYCLO_method", "is_Long_Method"};
+		String[] headers = {"MethodID", "package", "class", "method", "NOM_class", "LOC_class", "WMC_class", "LOC_method", "CYCLO_method"};
 		
 		Row row = sheet.createRow(0);
 		
@@ -150,23 +150,6 @@ public class Excel_Helper {
 		for (int i = 0; i < 11; i++) {
 			sheet.autoSizeColumn(i);
 		}
-	}
-	
-	public static void main(String[] args) {
-		String path = "C:\\Users\\Lourenco\\Desktop\\LEI\\2º Ano\\PCD\\Aula1";
-
-		JavaFilesHandler j;
-		try {
-			j = new JavaFilesHandler(path);
-			String excel = "C:\\Users\\Lourenco\\Desktop\\LEI\\" + j.getProjectName() + "_metrics.xlsx";
-			Excel_Helper e = new Excel_Helper(j, excel);
-			e.writeExcel();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} 
-		
-		
-	}
-	
+	}	
 	
 }

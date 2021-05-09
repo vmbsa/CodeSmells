@@ -72,6 +72,14 @@ public class JavaFilesHandler {
 		}
 		return total;
 	}
+	
+	public int getNumberOfMethods() {
+		int method_counter = 0;
+		for(JavaPackage pck: package_list) {
+			method_counter += pck.number_of_methods_in_package();
+		}
+		return method_counter;
+	}
 
 	public String getProjectName() {
 		return project_name;
