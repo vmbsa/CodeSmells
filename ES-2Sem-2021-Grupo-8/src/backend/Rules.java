@@ -2,6 +2,7 @@ package backend;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
@@ -36,13 +37,11 @@ public class Rules {
 	}
 	
 	public void writeRule(String file_name, String file_content) {
-		File new_file = new File(FOLDER.getAbsoluteFile() + "//" + file_name);
-		System.out.println(new_file.getAbsolutePath());
+		FileWriter myWriter;
 		try {
-			PrintWriter writer = new PrintWriter(new_file);
-			writer.print(file_content);
-			writer.flush();
-			writer.close();
+			myWriter = new FileWriter("Regras/" + file_name + ".txt");
+			myWriter.write(file_content);
+			myWriter.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -50,7 +49,7 @@ public class Rules {
 	
 	public static void main(String[] args) {
 		Rules r = new Rules();
-		r.writeRule("Testteeeeeeeeeee.txt", "Isto é um teste");
+		r.writeRule("Testteeeeeeeeeee", "Isto é um teste");
 	}
 
 }
