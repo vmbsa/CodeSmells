@@ -40,8 +40,8 @@ public class JavaClass extends VoidVisitorAdapter<Void> {
 
 	/**
 	 * Creates an instance of a java class 
-	 * @param name Name of the class
-	 * @param file java.io.File instance of the .java file
+	 * @param name {@link Integer} of the class
+	 * @param file {@link File} java.io.File instance of the .java file
 	 */
 	public JavaClass(String name, File file) {
 		this.name = name;
@@ -55,7 +55,7 @@ public class JavaClass extends VoidVisitorAdapter<Void> {
 
 	/**
 	 * Get the list of methods implemented in the class
-	 * @return List of methods implemented in the class
+	 * @return {@link List} of methods implemented in the class
 	 */
 	public List<JavaMethod> getMethods_list() {
 		return methods_list;
@@ -63,7 +63,7 @@ public class JavaClass extends VoidVisitorAdapter<Void> {
 
 	/**
 	 * Get the the name of the class
-	 * @return the class's name
+	 * @return {@link String} the class's name
 	 */	
 	public String getName() {
 		return name;
@@ -109,7 +109,7 @@ public class JavaClass extends VoidVisitorAdapter<Void> {
 	
 	/**
 	 * Gets the number of lines of code in the java class
-	 * @return Number of lines of code
+	 * @return {@link Integer} Number of lines of code
 	 */
 	public int getLOCClass() {
 		return size;
@@ -117,14 +117,14 @@ public class JavaClass extends VoidVisitorAdapter<Void> {
 	
 	/**
 	 * Gets the number of methods in the java class
-	 * @return Number of methods
+	 * @return {@link Integer} Number of methods
 	 */
 	public int getNOMClass() {
 		return methods_list.size();
 	}
 
 	/** Gets cyclomatic complexity of the java class
-	 * @return cyclomatic complexity
+	 * @return {@link Integer} cyclomatic complexity
 	 */
 	public int getWMCClass() {
 		int WMCCounter = 0;
