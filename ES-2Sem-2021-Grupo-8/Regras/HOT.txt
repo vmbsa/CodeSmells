@@ -1,1 +1,1 @@
-LOC_Class > 15  LOC_Class>60  
+Isto é um teste
