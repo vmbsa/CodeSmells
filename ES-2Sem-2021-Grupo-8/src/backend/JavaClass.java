@@ -83,6 +83,8 @@ public class JavaClass extends VoidVisitorAdapter<Void> {
 	/**
 	 * Method overrided from the com.github.javaparser.ast.visitor.VoidVisitorAdapter class
 	 * Visits all of the class content and increments the number of lines of code
+	 * @param cd {@link ClassOrInterfaceDeclaration} A definition of a class or interface.
+	 * @param arg {@link Void} A visitor that returns nothing, and has a default implementation for all its visit methods that simply visit their children in an unspecified order.
 	 */
 	@Override
 	public void visit(ClassOrInterfaceDeclaration cd, Void arg) {

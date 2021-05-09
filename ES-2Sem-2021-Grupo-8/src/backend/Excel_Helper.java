@@ -18,19 +18,47 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+/**
+ * Object that helps reading and writing on Excel sheets. Modifies its structure and gets the content of specific cells.
+ * 
+ * @author ES-2Sem-2021-Grupo-8
+ * @version 1.0
+ *
+ */
+
 public class Excel_Helper {
 
+	/**
+	 * Name of the Excel file to be read.
+	 */
 	private static String XLSX_FILE_NAME;
+	/**
+	 * List of rows that constitutes the file that its being read.
+	 */
 	private ArrayList<String> rows = new ArrayList<String>(); 
-	
+	/**
+	 * Location where the generated Excel file will be placed.
+	 */
 	private String file_path;
-	private JavaFilesHandler project;;
+	/**
+	 * 
+	 */
+	private JavaFilesHandler project;
 
+	
+	/**
+	 * Name of the class
+	 */
 	public Excel_Helper(String name) {
 		super();
 		Excel_Helper.XLSX_FILE_NAME = name;
 	}
 	
+	/**
+	 * Creates an instance of a Excel Helper 
+	 * @param project Name of the class
+	 * @param file java.io.File instance of the .java file
+	 */
 	public Excel_Helper(JavaFilesHandler project, String file_path) {
 		this.file_path = file_path;
 		this.project = project;
