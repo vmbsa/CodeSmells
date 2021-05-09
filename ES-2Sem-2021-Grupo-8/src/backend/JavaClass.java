@@ -29,9 +29,11 @@ public class JavaClass extends VoidVisitorAdapter<Void> {
 	 * java.io.File instance of the .java file
 	 */
 	private File file;
+
 	/**
 	 * List of the the methods implemented in the java class
 	 */
+
 	private List<JavaMethod> methods_list = new ArrayList<JavaMethod>();
 	/**
 	 * Number of lines of code of the java class
@@ -46,8 +48,10 @@ public class JavaClass extends VoidVisitorAdapter<Void> {
 	public JavaClass(String name, File file) {
 		this.name = name;
 		this.file = file;
+		this.javaPackage = javaPackage;
 		try {
 			getMethods();
+			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -111,6 +115,7 @@ public class JavaClass extends VoidVisitorAdapter<Void> {
 	 * Gets the number of lines of code in the java class
 	 * @return {@link Integer} Number of lines of code
 	 */
+
 	public int getLOCClass() {
 		return size;
 	}
@@ -132,6 +137,135 @@ public class JavaClass extends VoidVisitorAdapter<Void> {
 			WMCCounter += method.getCYCLO_method();
 		}
 		return WMCCounter;
+	}
+	
+	public boolean isGodClass(String data) {
+		boolean bol = false;
+		if(data.contains("OR")) {
+			bol = orGodClass(data);
+		}else if(data.contains("AND")) {
+			bol = andGodClass(data);
+		}else{
+			String[] data2 = data.split(" ");
+			for(int i = 0; i<data2.length; i++) {
+				if(data2[i] == "WMC_class") {
+					int loc = this.getWMCClass();
+					int value = Integer.parseInt(data2[i+2]);
+					if(data2[i+1] == ">") {
+							if(loc > value) {
+								bol = true;
+							}
+						}else {
+							if(loc < value) {
+								bol = true;
+							}
+						}
+					}else if(data2[i] == "NOM_class") {
+						int loc = this.getNOMClass();
+						int value = Integer.parseInt(data2[i+2]);
+						if(data2[i+1] == ">") {
+							if(loc > value) {
+								bol = true;
+							}
+						}else {
+							if(loc < value) {
+								bol = true;
+							}
+						}
+					}
+			}
+		}
+		return bol;
+	}
+
+	public boolean andGodClass(String data) {
+		boolean bol = false;
+		String[] data2 = data.split(" ");
+		for(int i = 0; i<data2.length; i++) {
+			if(data2[i] == "WMC_class") {
+				int loc = this.getWMCClass();
+				int value = Integer.parseInt(data2[i+2]);
+				if(data2[i+1] == ">") {
+						if(loc > value) {
+							bol = true;
+						}else{
+							if(loc <= value) 
+								return false;
+						}
+					}else if(data2[i+1] == "<"){
+						if(loc < value) {
+							bol = true;
+						}else{
+							if(loc >= value)
+								return false;
+						}
+					}
+				}else if(data2[i] == "NOM_class") {
+					int loc = this.getNOMClass();
+					int value = Integer.parseInt(data2[i+2]);
+					if(data2[i+1] == ">") {
+						if(loc > value) {
+							bol = true;
+						}else{
+							if(loc <= value) 
+								return false;
+						}
+					}else if(data2[i+1] == "<"){
+						if(loc < value) {
+							bol = true;
+						}else{
+							if(loc >= value)
+								return false;
+						}
+					}
+				}
+		}
+		return bol;
+	}
+
+	public boolean orGodClass(String data) {
+		boolean bol = false;
+		String[] data2 = data.split(" ");
+		for(int i = 0; i<data2.length; i++) {
+			if(data2[i] == "WMC_class") {
+				int loc = this.getWMCClass();
+				int value = Integer.parseInt(data2[i+2]);
+				if(data2[i+1] == ">") {
+						if(loc > value) {
+							bol = true;
+						}else{
+							if(loc <= value) 
+								bol = false;
+						}
+					}else if(data2[i+1] == "<"){
+						if(loc < value) {
+							bol = true;
+						}else{
+							if(loc >= value)
+								bol = false;
+						}
+					}
+				}else if(data2[i] == "NOM_class") {
+					int loc = this.getNOMClass();
+					int value = Integer.parseInt(data2[i+2]);
+					if(data2[i+1] == ">") {
+						if(loc > value) {
+							bol = true;
+						}else{
+							if(loc <= value) 
+								bol = false;
+						}
+					}else if(data2[i+1] == "<"){
+						if(loc < value) {
+							bol = true;
+						}else{
+							if(loc >= value)
+								bol = false;
+						}
+					}
+				}
+		}
+		return bol;
 	}
 
 }

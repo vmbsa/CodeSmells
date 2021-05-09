@@ -156,10 +156,10 @@ public class Excel_Helper {
 				for (JavaMethod m : c.getMethods_list()) {
 
 					Row row = sheet.createRow(methodID);
-
-					Object[] data = { methodID, p.getName(), c.getName(), m.getName(), c.getNOMClass(), c.getLOCClass(),
-							c.getWMCClass(), "Por fazer", m.getLOCMethod(), m.getCYCLO_method(), "Por fazer" };
-
+					
+					Object[] data = {methodID, p.getName(), c.getName(), m.getName(), c.getNOMClass(), c.getLOCClass(), 
+							c.getWMCClass(), m.getLOCMethod(), m.getCYCLO_method()};
+					
 					int column = 0;
 
 					for (Object field : data) {
@@ -183,9 +183,9 @@ public class Excel_Helper {
 	 * @param sheet Sheet of an Excel file
 	 */
 	private void createHeader(XSSFSheet sheet) {
-		String[] headers = { "MethodID", "package", "class", "method", "NOM_class", "LOC_class", "WMC_class",
-				"is_God_Class", "LOC_method", "CYCLO_method", "is_Long_Method" };
 
+		String[] headers = {"MethodID", "package", "class", "method", "NOM_class", "LOC_class", "WMC_class", "LOC_method", "CYCLO_method"};
+		
 		Row row = sheet.createRow(0);
 
 		CellStyle cellStyle = sheet.getWorkbook().createCellStyle();
@@ -212,6 +212,7 @@ public class Excel_Helper {
 		for (int i = 0; i < 11; i++) {
 			sheet.autoSizeColumn(i);
 		}
-	}
+
+	}	
 
 }

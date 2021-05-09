@@ -40,6 +40,7 @@ public class Gui_CriarRegra extends JFrame {
 
 	private String excel_file_path;
 	private String rules = "";
+	private String filename="";
 	private ArrayList<String> ArrayMethods = new ArrayList<String>();
 	private JTextField textField;
 	private JTextField textField_1;
@@ -87,7 +88,7 @@ public class Gui_CriarRegra extends JFrame {
 		@Override
 		public void mouseClicked(MouseEvent e) {
 		
-			String filename=textField.getText();
+			filename=textField.getText();
 			
 			try {
 				File myObj = new File("Regras/" + filename + ".txt");
@@ -178,8 +179,8 @@ public class Gui_CriarRegra extends JFrame {
 			btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
-				dispose();
+				RuleIntoJP();
+				setVisible(false);
 			
 			}
 			});
@@ -290,5 +291,8 @@ public class Gui_CriarRegra extends JFrame {
 		);
 		panel_1.setLayout(gl_panel_1);
 		getContentPane().setLayout(groupLayout);
+	}
+	public void RuleIntoJP() {
+		Gui_Regras.addToPane(filename + " --> " + rules + "\n");
 	}
 }
