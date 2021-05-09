@@ -131,9 +131,9 @@ public class Gui_Regras extends JFrame {
 		btnNewButton_1_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Gui_Metricas gui_metrics = new Gui_Metricas(excel_file_path);
-				gui_metrics.setVisible(true);
-				setVisible(false);
+//				Gui_Metricas gui_metrics = new Gui_Metricas(excel_file_path);
+//				gui_metrics.setVisible(true);
+//				setVisible(false);
 			}
 		});
 		
