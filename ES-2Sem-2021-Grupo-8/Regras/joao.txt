@@ -1,0 +1,1 @@
+LOC_Class > 50 AND WMC_Class<50  
